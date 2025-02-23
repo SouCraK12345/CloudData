@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>沖縄料理ギャラリー</title>
+    <style>
+      body {
+        font-family: "ud デジタル 教科書体 n-r", sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 0;
+        color: #006699;
+        font-size: 2.5em;
+        text-shadow: 1px 1px 1px #fff;
+        padding: 20px;
+        background: linear-gradient(to right, #ffac75, #ffdba1);
+      }
+      
+      .title{background-color:#00000077;padding:5px}
+
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      .grid-item {
+        position: relative;
+        border-radius: 8px;
+        padding: 0;
+        overflow: hidden;
+        text-align: center;
+        color: white;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        cursor: pointer;
+        height: 200px; /* 高さを指定 */
+      }
+
+      /* 各料理の背景画像 */
+      .goya-champuru {
+        background-image: url("https://soucrak12345.github.io/CloudData/ゴーヤーチャンプルー.webp");
+        background-size: cover;
+      }
+      .soki-soba {
+        background-image: url("https://soucrak12345.github.io/CloudData/ソーキそば.jpg");
+        background-size: cover;
+      }
+      .rafutei {
+        background-image: url("https://soucrak12345.github.io/CloudData/ラフテー.jpg");
+        background-size: cover;
+      }
+      .okinawa-soba {
+        background-image: url("https://soucrak12345.github.io/CloudData/沖縄そば.jpg");
+        background-size: cover;
+      }
+      .taco {
+        background-image: url("https://soucrak12345.github.io/CloudData/タコライス.jpg");
+        background-size: cover;
+      }
+      .juicy {
+        background-image: url("https://soucrak12345.github.io/CloudData/ジューシー.jpg");
+        background-size: cover;
+      }
+      .mimiga {
+        background-image: url("https://soucrak12345.github.io/CloudData/ミミガー.jpeg");
+        background-size: cover;
+      }
+      .champuru {
+        background-image: url("https://soucrak12345.github.io/CloudData/チャンプルー.jpg");
+        background-size: cover;
+      }
+      .tebichi {
+        background-image: url("https://soucrak12345.github.io/CloudData/てびち.jpg");
+        background-size: cover;
+      }
+      .sukugarasu-tofu {
+        background-image: url("https://soucrak12345.github.io/CloudData/ナーベラーンブシー.jpg");
+        background-size: cover;
+      }
+      .tofu-you {
+        background-image: url("https://soucrak12345.github.io/CloudData/豆腐よう.jpg");
+        background-size: cover;
+      }
+      .umibudo {
+        background-image: url("https://soucrak12345.github.io/CloudData/海ぶどう.avif");
+        background-size: cover;
+      }
+      .mozuku {
+        background-image: url("https://soucrak12345.github.io/CloudData/もずく.jpg");
+        background-size: cover;
+      }
+      .sata-andagi {
+        background-image: url("https://soucrak12345.github.io/CloudData/サーターアンダギー.jpg");
+        background-size: cover;
+      }
+      .chinsuko {
+        background-image: url("https://soucrak12345.github.io/CloudData/ちんすこう.jpg");
+        background-size: cover;
+      }
+      .sukuragasu {
+        background-image: url("https://soucrak12345.github.io/CloudData/スクラガス豆腐.jpg");
+        background-size: cover;
+      }      
+      .hiraya-ti-{
+        background-image: url("https://soucrak12345.github.io/CloudData/ヒラヤーチー.jpg");
+        background-size: cover;}
+      .imo{
+        background-image: url("https://soucrak12345.github.io/CloudData/紅芋タルト.jpeg");
+        background-size: cover;}
+
+      .grid-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .grid-item h2 {
+        font-size: 1.5em;
+        margin: 0;
+      }
+
+      /* モーダルダイアログのスタイル */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: #fff;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 5px;
+        text-align: left;
+      }
+      .modal-content h2 {
+        margin: 0 0 10px;
+        color: #006699;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>沖縄おすすめ料理!</h1>
+    <div class="grid-container">
+      <div
+        class="grid-item goya-champuru"
+        onclick="showModal('ゴーヤーチャンプルー', 'ゴーヤーチャンプルーは沖縄の伝統的な料理で、ゴーヤー（苦瓜）を主な材料とし、豚肉や豆腐、卵と共に炒めて作ります。')"
+      >
+        <h2 class="title">ゴーヤーチャンプルー</h2>
+      </div>
+      <div
+        class="grid-item soki-soba"
+        onclick="showModal('ソーキそば', 'ソーキそばは沖縄の代表的なラーメンで、柔らかい豚肉の骨付き肉（ソーキ）がのった麺料理です。')"
+      >
+        <h2 class="title">ソーキそば</h2>
+      </div>
+      <div
+        class="grid-item rafutei"
+        onclick="showModal('ラフテー', 'ラフテーは、豚のバラ肉を甘辛いタレで煮込んだ料理で、ご飯と一緒に食べることが多いです。')"
+      >
+        <h2 class="title">ラフテー</h2>
+      </div>
+      <div
+        class="grid-item taco"
+        onclick="showModal('タコライス', 'タコライスは沖縄の人気料理で、メキシコのタコスを基にした一品です。ご飯の上に、スパイシーなひき肉、レタス、トマト、チーズをたっぷりのせて、ピリ辛のソースをかけて楽しむスタイルが特徴です。色とりどりの具材が美しく、食べ応えもあり、ランチやディナーにぴったりな料理です。')"
+      >
+        <h2 class="title">タコライス</h2>
+      </div>
+      <div
+        class="grid-item juicy"
+        onclick="showModal('ジューシー', 'ジューシーは沖縄の伝統的な炊き込みご飯で、豚肉やにんじん、昆布、しいたけなどの具材を使って、香ばしく炊き上げられます。出汁の旨味がご飯にしっかり染み込み、特にお祝いの席や家庭の食卓に欠かせない一品です。香り高く、栄養バランスも良く、リッチな味わいが楽しめます。')"
+      >
+        <h2 class="title">ジューシー</h2>
+      </div>
+      <div
+        class="grid-item mimiga"
+        onclick="showModal('ミミガー', 'ミミガーは、豚の耳を茹でて細切りにした沖縄料理です。コリコリとした独特の食感が特徴で、酢味噌や辛子醤油をつけていただきます。お酒のおつまみや、前菜として人気があり、沖縄の居酒屋メニューでは欠かせない存在です。ヘルシーでありながら、食べ応えのある一品です。')"
+      >
+        <h2 class="title">ミミガー</h2>
+      </div>
+      <div
+        class="grid-item champuru"
+        onclick="showModal('チャンプルー', 'チャンプルーは沖縄の家庭料理で、さまざまな食材を炒め合わせた一品です。特に、ゴーヤーと豆腐を使ったゴーヤーチャンプルーが有名で、豚肉や野菜を加えて栄養たっぷりに仕上げます。食材の旨味を引き立てる味付けが特徴で、家庭ごとにアレンジが楽しめる料理です。')"
+      >
+        <h2 class="title">チャンプルー</h2>
+      </div>
+      <div
+        class="grid-item tebichi"
+        onclick="showModal('てびち', 'てびちは、豚足をじっくり煮込んだ料理で、柔らかくてとろけるような食感が楽しめます。コラーゲンが豊富で、美容にも良いとされ、通常はお味噌やお酢で味付けされて提供されます。沖縄の家庭で愛される一品で、酒の肴としても人気があります。')"
+      >
+        <h2 class="title">てびち</h2>
+      </div>
+      <div
+        class="grid-item sukugarasu-tofu"
+        onclick="showModal('ナーベラーンブシー', 'ナーベラーンブシーは沖縄特産のゴーヤーを使用した煮物料理です。豚肉や魚と一緒に煮込まれ、ゴーヤーのほろ苦さと旨味が引き出される一品。栄養価も高く、家庭料理として地元の人々に親しまれています。特に健康志向の方におすすめの料理です。')"
+      >
+        <h2 class="title">ナーベラーンブシー</h2>
+      </div>
+      <div
+        class="grid-item tofu-you"
+        onclick="showModal('豆腐よう', '豆腐ようは沖縄独特の発酵豆腐で、濃厚な旨味と独特の風味があります。酒の肴やおつまみとして非常に人気が高く、食べると口の中でとろけるような食感が楽しめます。健康にも良く、特にビールや泡盛と相性が良いとされています。')"
+      >
+        <h2 class="title">豆腐よう</h2>
+      </div>
+      <div
+        class="grid-item umibudo"
+        onclick="showModal('海ぶどう', '海ぶどうは、沖縄特産のミネラル豊富な海藻です。プチプチとした食感が特徴で、サラダや前菜、刺身のトッピングとして使われることが多いです。新鮮な海ぶどうは、海の香りが口いっぱいに広がり、健康にも良いとされています。')"
+      >
+        <h2 class="title">海ぶどう</h2>
+      </div>
+      <div
+        class="grid-item mozuku"
+        onclick="showModal('もずく', 'もずくは、沖縄特産の海藻で、栄養素が豊富な健康食品です。主に酢の物やスープ、和え物に使われ、特に夏場のさっぱりとした料理にぴったりです。独特の風味と食感が楽しめる一品で、地元の人々に愛されています。')"
+      >
+        <h2 class="title">もずく</h2>
+      </div>
+      <div
+        class="grid-item okinawa-soba"
+        onclick="showModal('沖縄そば', '沖縄そばは、小麦粉から作られた太めの麺が特徴で、豚肉やカツオダシのスープで提供されます。')"
+      >
+        <h2 class="title">沖縄そば</h2>
+      </div>
+      <div
+        class="grid-item sukuragasu"
+        onclick="showModal('スクラガス豆腐', 'スクガラス豆腐は、沖縄の郷土料理で、島豆腐の上にアイゴの稚魚であるスクガラスをのせた料理です。')"
+      >
+        <h2 class="title">スクラガス豆腐</h2>
+      </div>
+      <div
+        class="grid-item hiraya-ti-"
+        onclick="showModal('ヒラヤーチー', 'ヒラヤーチーは、小麦粉、卵、水やだしを混ぜて焼く沖縄の家庭料理です。沖縄の方言で「平たく焼く」という意味で、塩味のお好み焼きのような味わいが特徴です。')"
+      >
+        <h2 class="title">ヒラヤーチー</h2>
+      </div>
+      <div
+        class="grid-item sata-andagi"
+        onclick="showModal('サーターアンダギー', 'サーターアンダギーは、沖縄風のドーナツで、外はカリッと中はしっとりとした食感が楽しめます。甘さ控えめで、軽食やおやつにぴったりな一品です。特にお土産やお茶うけとして人気が高く、温かい状態で食べると格別です。')"
+      >
+        <h2 class="title">サーターアンダギー</h2>
+      </div>
+      <div
+        class="grid-item chinsuko"
+        onclick="showModal('ちんすこう', 'ちんすこうは、沖縄の伝統的なクッキーで、外はサクサク、中はほろっとした食感が特徴です。小麦粉、砂糖、ラードを主な材料とし、さまざまなバリエーションがあります。特にお土産として人気が高く、沖縄の味を楽しめる一品です。')"
+      >
+        <h2 class="title">ちんすこう</h2>
+      </div>
+      <div
+        class="grid-item imo"
+        onclick="showModal('紅芋タルト', '紅芋タルトは、沖縄の特産物である紅芋を使ったタルトで、沖縄土産の定番商品です。紅芋の風味を生かしたやさしい味わいと食感で人気があります。﻿')"
+      >
+        <h2 class="title">紅芋タルト</h2>
+      </div>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description"></p>
+        <button id="search">
+        Googleで検索
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function showModal(title, description) {
+        document.getElementById("modal-title").innerText = title
+        document.getElementById("modal-description").innerText = description
+        document.getElementById("myModal").style.display = "block"
+        document.getElementById("search").onclick = function(){window.open("https://www.google.com/search?q=" + title)}
+      }
+
+      function closeModal() {
+        document.getElementById("myModal").style.display = "none"
+      }
+
+      // モーダル外クリックで閉じる
+      window.onclick = function (event) {
+        if (event.target === document.getElementById("myModal")) {
+          closeModal()
+        }
+      }
+    </script>
+  </body>
+</html>
