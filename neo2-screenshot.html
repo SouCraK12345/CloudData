@@ -1,264 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>画面共有スクリーンショットツール</title>
-    <!-- Tailwind CSSを読み込み、レスポンシブデザインに対応させます -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* フォント設定 */
-        :root {
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* スクリーンショットを一時的に保持するためのキャンバスは非表示のまま */
-        #screenshotCanvas {
-            display: none;
-        }
-
-        /* 画面プレビュー用のビデオ要素のスタイル */
-        #screenVideo {
-            /* 画面共有中は表示する */
-            display: block;
-            width: 100%;
-            /* 最大幅を設定し、UIが大きくなりすぎないようにする */
-            max-height: 250px;
-            object-fit: contain;
-            /* アスペクト比を維持し、全体を表示 */
-            border-radius: 0.5rem;
-            /* rounded-lg */
-            margin-top: 1rem;
-            /* mt-4 */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
-            /* shadow-md */
-        }
-
-        /* 共有開始前はビデオを非表示にするためのユーティリティクラス */
-        .hidden-video {
-            display: none !important;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>画面共有 → スクショ → 送信</title>
+<style>
+  body{font-family:system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif; padding:18px; max-width:900px; margin:auto;}
+  button{margin:6px 6px 6px 0; padding:10px 14px;}
+  #preview{max-width:100%; border:1px solid #ccc; display:block; margin-top:10px;}
+  #status{margin-top:10px; color:#333;}
+  label.small{font-size:0.9em; color:#666; display:block; margin-top:6px;}
+</style>
 </head>
+<body>
+  <h2>画面共有 → スクショ → 送信</h2>
 
-<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+  <div>
+    <button id="startShare">画面共有を開始</button>
+    <button id="capture" disabled>スクショを撮る</button>
+    <button id="send" disabled>サーバへ送信</button>
+    <button id="stopShare" disabled>共有停止</button>
+    <div class="small">※ ダイアログが出たら「画面/ウィンドウ/タブ」を選んで許可してください。</div>
+  </div>
 
-    <div id="appContainer" class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg text-center">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">画面キャプチャとスクショ</h1>
-        <p class="text-gray-600 mb-8">「画面共有を開始」ボタンを押し、キャプチャしたい画面を選択してください。</p>
+  <canvas id="canvas" style="display:none;"></canvas>
+  <img id="preview" alt="スクショプレビュー" />
 
-        <!-- プレビュー表示エリア (共有開始前は非表示) -->
-        <video id="screenVideo" autoplay playsinline class="hidden-video"></video>
+  <div id="status">状態: 待機中</div>
 
-        <!-- メインコントロールボタン -->
-        <button id="startButton"
-            class="w-full mt-4 bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-blue-300">
-            画面共有を開始
-        </button>
+<script>
+(function(){
+  // ---- 設定: ここにあなたの GAS のデプロイ URL を入れてください ----
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbyRBCwvn_38oSCBlH-1ZTfOs4o_yh9yGjBpetfHCOogugyjn4HzyHTyA23mKwTZkh_x/exec";
+  // -----------------------------------------------------------------
 
-        <!-- スクリーンショットボタン（共有開始後に表示） -->
-        <button id="captureButton" disabled
-            class="w-full mt-4 bg-green-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md opacity-50 cursor-not-allowed"
-            title="先に画面共有を開始してください">
-            スクリーンショットを撮る
-        </button>
+  const startBtn = document.getElementById('startShare');
+  const captureBtn = document.getElementById('capture');
+  const sendBtn = document.getElementById('send');
+  const stopBtn = document.getElementById('stopShare');
+  const previewImg = document.getElementById('preview');
+  const canvas = document.getElementById('canvas');
+  const status = document.getElementById('status');
 
-        <!-- ダウンロードリンク（撮影後に表示） -->
-        <button id="downloadLink" class="display:none"></button>
-        <!-- ダウンロードリンクを送信ボタンに置き換え -->
-        <button id="sendButton"
-            class="hidden mt-4 w-full bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-indigo-700 transition duration-300 shadow-md">
-            送信
-        </button>
+  let stream = null;
+  let videoTrack = null;
+  let lastDataUrl = null; // base64 data URL
 
+  function setStatus(text){
+    status.textContent = "状態: " + text;
+  }
 
-        <!-- メッセージ表示エリア -->
-        <p id="messageArea" class="mt-6 text-sm text-gray-500 min-h-[1.5rem]">
-            必ず、"Room1"か"Room2"の試合のみを送信してください。
-        </p>
+  async function startShare(){
+    try{
+      stream = await navigator.mediaDevices.getDisplayMedia({video:true});
+      // 拡張用途で video 要素を使う場合は作るが、ここでは canvas に直接描画する
+      videoTrack = stream.getVideoTracks()[0];
+      setStatus("画面共有中（準備OK）。スクショを撮ってください。");
+      captureBtn.disabled = false;
+      stopBtn.disabled = false;
+      startBtn.disabled = true;
 
-        <!-- スクリーンショットを一時的に保持するための非表示キャンバス -->
-        <canvas id="screenshotCanvas"></canvas>
-    </div>
+      // 自動的に最初のフレームをキャプチャする場合はここで呼ぶ
+    } catch(err){
+      console.error(err);
+      setStatus("画面共有が開始できませんでした: " + err.message);
+    }
+  }
 
-    <script>
-        // DOM要素の参照を取得
-        const startButton = document.getElementById('startButton');
-        const captureButton = document.getElementById('captureButton');
-        const downloadLink = document.getElementById('downloadLink');
-        const messageArea = document.getElementById('messageArea');
-        const videoElement = document.getElementById('screenVideo');
-        const canvasElement = document.getElementById('screenshotCanvas');
-        const sendButton = document.getElementById('sendButton');
-        let capturedImage = null; // スクショを保持
+  function stopShare(){
+    if(stream){
+      stream.getTracks().forEach(t => t.stop());
+      stream = null;
+      videoTrack = null;
+      startBtn.disabled = false;
+      captureBtn.disabled = true;
+      stopBtn.disabled = true;
+      setStatus("共有停止しました。");
+    }
+  }
 
-        let mediaStream = null;
+  async function captureScreenshot(){
+    try {
+      if(!stream){
+        setStatus("まず画面共有を開始してください。");
+        return;
+      }
 
-        // エラーハンドリングのためのユーティリティ関数
-        const displayMessage = (message, isError = false) => {
-            messageArea.textContent = message;
-            // メッセージのスタイルを適用
-            messageArea.className = `mt-6 text-sm min-h-[1.5rem] ${isError ? 'text-red-500 font-medium' : 'text-gray-500'}`;
-        };
+      // 一時的に <video> を作って currentFrame を描画する
+      const v = document.createElement('video');
+      v.srcObject = stream;
+      v.muted = true;
+      await v.play().catch(()=>{}); // 再生許可を待つ
 
-        // 1. 画面共有を開始する関数
-        const startScreenShare = async () => {
-            // ダウンロードリンクを非表示に戻す
-            downloadLink.classList.add('hidden');
-            captureButton.disabled = true;
-            videoElement.classList.add('hidden-video'); // ビデオを非表示に
+      // canvas を映像サイズに合わせる
+      canvas.width = v.videoWidth || 1280;
+      canvas.height = v.videoHeight || 720;
+      const ctx = canvas.getContext('2d');
 
-            displayMessage('画面共有の選択ダイアログが表示されました。選択してください...');
+      // 描画（遅延を入れると最新フレームを得やすい）
+      await new Promise(r => setTimeout(r, 50));
+      ctx.drawImage(v, 0, 0, canvas.width, canvas.height);
 
-            try {
-                // getDisplayMedia APIを使用して画面共有ストリームを取得
-                mediaStream = await navigator.mediaDevices.getDisplayMedia({
-                    video: true // 映像のみが必要
-                });
+      // dataURL を取得
+      const dataUrl = canvas.toDataURL('image/png'); // "data:image/png;base64,....."
+      lastDataUrl = dataUrl;
+      previewImg.src = dataUrl;
+      previewImg.style.display = 'block';
+      sendBtn.disabled = false;
+      setStatus("スクショ取得完了。送信できます。");
+      // stop the temporary video element
+      v.pause();
+      v.srcObject = null;
+    } catch(err){
+      console.error(err);
+      setStatus("スクショ取得エラー: " + err.message);
+    }
+  }
 
-                if (mediaStream) {
-                    // 取得したストリームをvideo要素に設定して再生
-                    videoElement.srcObject = mediaStream;
+  async function sendToServer(){
+    if(!lastDataUrl){
+      setStatus("送る画像がありません。スクショを撮ってください。");
+      return;
+    }
+    setStatus("送信中...");
 
-                    // ビデオ要素を表示し、プレビューを開始
-                    videoElement.classList.remove('hidden-video');
+    try{
+      // dataUrl から base64 部分のみを取り出す
+      const base64 = lastDataUrl.split(',')[1];
 
-                    // ストリームが停止したらUIをリセットするイベントを設定
-                    mediaStream.getVideoTracks()[0].onended = () => {
-                        stopStream();
-                        displayMessage('画面共有が停止されました。');
-                    };
+      // ここではプリフライト回避を優先して Content-Type: text/plain にして送る
+      const resp = await fetch(GAS_URL, {
+        method: 'POST',
+        // mode: 'cors', // 既定: cors。CORS 応答が無いとレスポンスは読み取れません
+        headers: {
+          'Content-Type': 'text/plain' // simple request にしてプリフライトを避ける
+        },
+        body: base64
+      });
 
-                    // UIの更新
-                    captureButton.disabled = false;
-                    captureButton.classList.replace('opacity-50', 'hover:bg-green-600');
-                    captureButton.classList.remove('cursor-not-allowed');
-                    captureButton.title = '現在の画面をキャプチャします';
+      // サーバが CORS を許可していればレスポンスを読めます
+      let text = '';
+      try {
+        text = await resp.text();
+      } catch(e) {
+        // CORS ブロックなどで読むことができない場合
+        text = '(サーバ応答を取得できませんでした — CORS 設定を要確認)';
+      }
 
-                    startButton.textContent = '共有を停止';
-                    startButton.classList.replace('bg-blue-600', 'bg-red-500');
-                    startButton.classList.replace('hover:bg-blue-700', 'hover:bg-red-600');
-                    startButton.classList.replace('focus:ring-blue-300', 'focus:ring-red-300');
+      setStatus("送信完了: " + text);
+    } catch(err){
+      console.error(err);
+      setStatus("送信エラー: " + err.message + "（ネットワーク/CORS を確認）");
+    }
+  }
 
+  startBtn.addEventListener('click', startShare);
+  stopBtn.addEventListener('click', stopShare);
+  captureBtn.addEventListener('click', captureScreenshot);
+  sendBtn.addEventListener('click', sendToServer);
 
-                    displayMessage('画面共有中です。プレビューを確認し、「スクリーンショットを撮る」を押してください。');
-                }
+  // ウィンドウを閉じたときにトラックを停止
+  window.addEventListener('beforeunload', ()=> {
+    if(stream) stream.getTracks().forEach(t=>t.stop());
+  });
 
-            } catch (error) {
-                // ユーザーがキャンセルした場合や権限がない場合のエラー処理
-                console.error('画面共有の開始に失敗しました:', error);
-                displayMessage('画面共有の開始をキャンセルまたは拒否しました。', true);
-                stopStream();
-            }
-        };
-
-        // 2. ストリームを停止する関数
-        const stopStream = () => {
-            if (mediaStream) {
-                mediaStream.getTracks().forEach(track => track.stop());
-                mediaStream = null;
-            }
-
-            // UIを初期状態に戻す
-            captureButton.disabled = true;
-            captureButton.classList.replace('hover:bg-green-600', 'opacity-50');
-            captureButton.classList.add('cursor-not-allowed');
-            captureButton.title = '先に画面共有を開始してください';
-
-            startButton.textContent = '画面共有を開始';
-            startButton.classList.replace('bg-red-500', 'bg-blue-600');
-            startButton.classList.replace('hover:bg-red-600', 'hover:bg-blue-700');
-            startButton.classList.replace('focus:ring-red-300', 'focus:ring-blue-300');
-
-            downloadLink.classList.add('hidden');
-            videoElement.srcObject = null;
-            videoElement.classList.add('hidden-video'); // ビデオを非表示に
-        };
-
-        // 3. スクリーンショットを撮る関数
-        const takeScreenshot = () => {
-            if (!mediaStream) {
-                displayMessage('まず画面共有を開始してください。', true);
-                return;
-            }
-
-            // video要素の幅と高さを取得
-            const videoWidth = videoElement.videoWidth;
-            const videoHeight = videoElement.videoHeight;
-
-            if (videoWidth === 0 || videoHeight === 0) {
-                displayMessage('ビデオデータがまだ準備できていません。しばらく待ってから再度試してください。', true);
-                return;
-            }
-
-            // canvasのサイズをビデオと同じに設定
-            canvasElement.width = videoWidth;
-            canvasElement.height = videoHeight;
-
-            // canvasにビデオの現在のフレームを描画
-            const ctx = canvasElement.getContext('2d');
-            ctx.drawImage(videoElement, 0, 0, videoWidth, videoHeight);
-
-            // canvasの内容をData URL (PNG画像) として取得
-            const imageUrl = canvasElement.toDataURL('image/png');
-
-            // ダウンロードリンクの属性を設定して表示
-            downloadLink.href = imageUrl;
-            // ファイル名にタイムスタンプを追加
-            downloadLink.download = `screenshot-${new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-')}.png`;
-
-            downloadLink.classList.remove('hidden');
-
-            capturedImage = imageUrl; // ← 保存しておく
-
-            // 送信ボタンを表示
-            sendButton.classList.remove('hidden');
-            displayMessage('スクリーンショットが撮影されました。「送信」でサーバーへ送れます。');
-        };
-
-        // イベントリスナーの設定
-        startButton.addEventListener('click', () => {
-            if (mediaStream) {
-                stopStream();
-            } else {
-                startScreenShare();
-            }
-        });
-
-        captureButton.addEventListener('click', takeScreenshot);
-
-
-        // 送信処理
-        sendButton.addEventListener('click', async () => {
-            if (!capturedImage) {
-                displayMessage('画像がありません。', true);
-                return;
-            }
-
-            const payload = {
-                image: capturedImage,
-                filename: `screenshot-${new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-')}.png`
-            };
-
-            try {
-                const res = await fetch("https://script.google.com/macros/s/AKfycbw5duN0G9e42V15_EV69WvFoJuncrFZoXQAHJxximvFUMSliNzJqoB8yyIbtu6-j3Uu/exec", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
-                });
-                const result = await res.json();
-
-                if (result.status === "success") {
-                    displayMessage(`送信成功！保存先: ${result.fileUrl}`);
-                } else {
-                    displayMessage(`送信失敗: ${result.message}`, true);
-                }
-            } catch (err) {
-                displayMessage(`通信エラー: ${err.message}`, true);
-            }
-        });
-    </script>
+})();
+</script>
 </body>
-
 </html>
