@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画面共有スクリーンショットツール</title>
+    <!-- Tailwind CSSを読み込み、レスポンシブデザインに対応させます -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* フォント設定 */
+        :root { font-family: 'Inter', sans-serif; }
+        /* キャンバスとビデオを非表示にしておくことで、スクリーンショット撮影時以外に予期せぬ要素が表示されるのを防ぎます */
+        #screenVideo, #screenshotCanvas {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center p-4">
+
+    <div id="appContainer" class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg text-center">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6">画面キャプチャとスクショ</h1>
+        <p class="text-gray-600 mb-8">「画面共有を開始」ボタンを押し、キャプチャしたい画面を選択してください。</p>
+
+        <!-- メインコントロールボタン -->
+        <button id="startButton" 
+                class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 shadow-md transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-blue-300">
+            画面共有を開始
+        </button>
+
+        <!-- スクリーンショットボタン（共有開始後に表示） -->
+        <button id="captureButton" disabled 
+                class="w-full mt-4 bg-green-500 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md opacity-50 cursor-not-allowed"
+                title="先に画面共有を開始してください">
+            スクリーンショットを撮る
+        </button>
+
+        <!-- ダウンロードリンク（撮影後に表示） -->
+        <a id="downloadLink" href="#" download="screenshot-capture.png" 
+           class="hidden mt-4 inline-block w-full bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-indigo-700 transition duration-300 shadow-md transform hover:scale-[1.02] active:scale-[0.98]">
+            ダウンロード
+        </a>
+
+        <!-- メッセージ表示エリア -->
+        <p id="messageArea" class="mt-6 text-sm text-gray-500 min-h-[1.5rem]">
+            準備完了。
+        </p>
+        
+        <!-- 映像ストリームを表示するための非表示ビデオ要素 (キャプチャ元として使用) -->
+        <video id="screenVideo" autoplay playsinline></video>
+        
+        <!-- スクリーンショットを一時的に保持するための非表示キャンバス -->
+        <canvas id="screenshotCanvas"></canvas>
+    </div>
+
+    <script>
+        // DOM要素の参照を取得
+        const startButton = document.getElementById('startButton');
+        const captureButton = document.getElementById('captureButton');
+        const downloadLink = document.getElementById('downloadLink');
+        const messageArea = document.getElementById('messageArea');
+        const videoElement = document.getElementById('screenVideo');
+        const canvasElement = document.getElementById('screenshotCanvas');
+        
+        let mediaStream = null;
+
+        // エラーハンドリングのためのユーティリティ関数
+        const displayMessage = (message, isError = false) => {
+            messageArea.textContent = message;
+            messageArea.className = `mt-6 text-sm min-h-[1.5rem] ${isError ? 'text-red-500 font-medium' : 'text-gray-500'}`;
+        };
+
+        // 1. 画面共有を開始する関数
+        const startScreenShare = async () => {
+            // ダウンロードリンクを非表示に戻す
+            downloadLink.classList.add('hidden');
+            captureButton.disabled = true;
+
+            displayMessage('画面共有の選択ダイアログが表示されました。選択してください...');
+            
+            try {
+                // getDisplayMedia APIを使用して画面共有ストリームを取得
+                mediaStream = await navigator.mediaDevices.getDisplayMedia({ 
+                    video: true // 映像のみが必要
+                });
+
+                if (mediaStream) {
+                    // 取得したストリームをvideo要素に設定して再生
+                    videoElement.srcObject = mediaStream;
+
+                    // ストリームが停止したらUIをリセットするイベントを設定
+                    mediaStream.getVideoTracks()[0].onended = () => {
+                        stopStream();
+                        displayMessage('画面共有が停止されました。');
+                    };
+
+                    // スクリーンショットボタンを有効化
+                    captureButton.disabled = false;
+                    captureButton.classList.replace('opacity-50', 'hover:bg-green-600');
+                    captureButton.classList.remove('cursor-not-allowed');
+                    captureButton.title = '現在の画面をキャプチャします';
+
+                    startButton.textContent = '共有を停止';
+                    startButton.classList.replace('bg-blue-600', 'bg-red-500');
+                    startButton.classList.replace('hover:bg-blue-700', 'hover:bg-red-600');
+                    startButton.classList.replace('focus:ring-blue-300', 'focus:ring-red-300');
+
+
+                    displayMessage('画面共有中です。「スクリーンショットを撮る」を押してください。');
+                }
+
+            } catch (error) {
+                // ユーザーがキャンセルした場合や権限がない場合のエラー処理
+                console.error('画面共有の開始に失敗しました:', error);
+                displayMessage('画面共有の開始をキャンセルまたは拒否しました。', true);
+                stopStream();
+            }
+        };
+
+        // 2. ストリームを停止する関数
+        const stopStream = () => {
+            if (mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+                mediaStream = null;
+            }
+
+            // UIを初期状態に戻す
+            captureButton.disabled = true;
+            captureButton.classList.replace('hover:bg-green-600', 'opacity-50');
+            captureButton.classList.add('cursor-not-allowed');
+            captureButton.title = '先に画面共有を開始してください';
+
+            startButton.textContent = '画面共有を開始';
+            startButton.classList.replace('bg-red-500', 'bg-blue-600');
+            startButton.classList.replace('hover:bg-red-600', 'hover:bg-blue-700');
+            startButton.classList.replace('focus:ring-red-300', 'focus:ring-blue-300');
+
+            downloadLink.classList.add('hidden');
+            videoElement.srcObject = null;
+        };
+
+        // 3. スクリーンショットを撮る関数
+        const takeScreenshot = () => {
+            if (!mediaStream) {
+                displayMessage('まず画面共有を開始してください。', true);
+                return;
+            }
+
+            // video要素の幅と高さを取得
+            const videoWidth = videoElement.videoWidth;
+            const videoHeight = videoElement.videoHeight;
+
+            if (videoWidth === 0 || videoHeight === 0) {
+                 displayMessage('ビデオデータがまだ準備できていません。しばらく待ってから再度試してください。', true);
+                 return;
+            }
+
+            // canvasのサイズをビデオと同じに設定
+            canvasElement.width = videoWidth;
+            canvasElement.height = videoHeight;
+
+            // canvasにビデオの現在のフレームを描画
+            const ctx = canvasElement.getContext('2d');
+            ctx.drawImage(videoElement, 0, 0, videoWidth, videoHeight);
+
+            // canvasの内容をData URL (PNG画像) として取得
+            const imageUrl = canvasElement.toDataURL('image/png');
+
+            // ダウンロードリンクの属性を設定して表示
+            downloadLink.href = imageUrl;
+            downloadLink.download = `screenshot-${new Date().toISOString().slice(0, 19).replace('T', '_').replace(/:/g, '-')}.png`;
+            downloadLink.classList.remove('hidden');
+
+            displayMessage('スクリーンショットが撮影されました。下のボタンからダウンロードしてください。');
+        };
+
+        // イベントリスナーの設定
+        startButton.addEventListener('click', () => {
+            if (mediaStream) {
+                stopStream();
+            } else {
+                startScreenShare();
+            }
+        });
+
+        captureButton.addEventListener('click', takeScreenshot);
+
+    </script>
+</body>
+</html>
