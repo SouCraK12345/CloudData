@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>画像アップロード → GASへ送信</title>
+<style>
+  body{font-family:system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif; padding:18px; max-width:900px; margin:auto;}
+  button{margin:6px 6px 6px 0; padding:10px 14px;}
+  #preview{max-width:100%; border:1px solid #ccc; display:block; margin-top:10px; min-height:100px;}
+  #status{margin-top:10px; color:#333;}
+  input[type="file"]{margin-top:10px;}
+</style>
+</head>
+<body>
+  <h2>画像アップロード → GASへ送信</h2>
+
+  <div>
+    <input type="file" id="imageUpload" accept="image/*" />
+    <button id="send" disabled>サーバへ送信</button>
+  </div>
+
+  <img id="preview" alt="アップロード画像プレビュー" style="display:none;" />
+
+  <div id="status">状態: 待機中</div>
+
+<script>
+(function(){
+  // ---- 設定: ここにあなたの GAS のデプロイ URL を入れてください ----
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbyRBCwvn_38oSCBlH-1ZTfOs4o_yh9yGjBpetfHCOogugyjn4HzyHTyA23mKwTZkh_x/exec";
+  // -----------------------------------------------------------------
+
+  const imageUpload = document.getElementById('imageUpload');
+  const sendBtn = document.getElementById('send');
+  const previewImg = document.getElementById('preview');
+  const status = document.getElementById('status');
+
+  let lastDataUrl = null; // base64 data URL
+
+  function setStatus(text){
+    status.textContent = "状態: " + text;
+  }
+
+  // ファイルが選択されたときの処理
+  imageUpload.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      // ファイルリーダーを作成
+      const reader = new FileReader();
+
+      // ファイルの読み込みが完了したとき
+      reader.onload = (e) => {
+        lastDataUrl = e.target.result; // Base64データURLを取得
+        previewImg.src = lastDataUrl;
+        previewImg.style.display = 'block';
+        sendBtn.disabled = false;
+        setStatus("画像を選択しました。送信できます。");
+      };
+
+      // ファイルをデータURLとして読み込む
+      reader.readAsDataURL(file);
+    } else {
+      lastDataUrl = null;
+      previewImg.style.display = 'none';
+      sendBtn.disabled = true;
+      setStatus("画像が選択されていません。");
+    }
+  });
+
+  async function sendToServer(){
+    if(!lastDataUrl){
+      setStatus("送る画像がありません。画像をアップロードしてください。");
+      return;
+    }
+    setStatus("送信中...");
+    sendBtn.disabled = true; // 送信中はボタンを無効化
+
+    try{
+      // dataUrl から base64 部分のみを取り出す
+      const base64 = lastDataUrl.split(',')[1];
+
+      // ここではプリフライト回避を優先して Content-Type: text/plain にして送る
+      const resp = await fetch(GAS_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain' // simple request にしてプリフライトを避ける
+        },
+        body: base64
+      });
+
+      // サーバが CORS を許可していればレスポンスを読めます
+      let text = '';
+      try {
+        text = await resp.text();
+      } catch(e) {
+        // CORS ブロックなどで読むことができない場合
+        text = '(サーバ応答を取得できませんでした — CORS 設定を要確認)';
+      }
+
+      setStatus("送信完了: " + text);
+    } catch(err){
+      console.error(err);
+      setStatus("送信エラー: " + err.message + "（ネットワーク/CORS を確認）");
+    } finally {
+      sendBtn.disabled = false; // 送信後にはボタンを再度有効化
+    }
+  }
+
+  sendBtn.addEventListener('click', sendToServer);
+
+})();
+</script>
+</body>
+</html>
