@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中学校家庭科 消費生活に関する理解度確認テスト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        body {
+            font-family: 'Noto Serif JP', serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            background-color: #f3f4f6;
+        }
+        .paper {
+            background-color: white;
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            padding: 20mm;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-sizing: border-box;
+        }
+        .question-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        .section-title {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        /* 問題の途中でページが切れないようにする設定 */
+        .question-block {
+            page-break-inside: avoid;
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+        .question-text {
+            border-left: 3px solid #6366f1;
+            padding-left: 10px;
+            margin-left: 5px;
+            margin-bottom: 15px;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                -webkit-print-color-adjust: exact;
+            }
+            .paper {
+                width: 100%;
+                max-width: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                min-height: auto;
+            }
+            .no-print {
+                display: none;
+            }
+            /* 解答編の直前だけ改ページを入れる */
+            .page-break-before {
+                page-break-before: always;
+                break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print bg-gray-800 text-white p-4 text-center sticky top-0 z-50 shadow-md">
+        <p class="mb-2">中学校家庭科「消費生活に関する理解度確認テスト」に置き換えました。</p>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 flex items-center justify-center mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            印刷する
+        </button>
+    </div>
+
+    <div class="paper">
+        <h1 class="text-3xl text-center font-bold mb-8 font-sans border-b-4 border-double border-gray-800 pb-2">中学校家庭科 消費生活に関する理解度確認テスト</h1>
+        
+        <div class="mb-8">
+            <h2 class="text-xl font-bold section-title">指示:</h2>
+            <div class="text-sm p-3 border border-gray-200 rounded mb-6 question-block">
+                <p>このテストは合計<strong>100点満点</strong>です。</p>
+                <p>問題はすべて、提供されたソースコンテキスト（家庭科プリント）の内容に基づいています。</p>
+                <p>解答は最終セクションにまとめて記載してください。</p>
+            </div>
+
+            <h2 class="text-xl font-bold section-title">1. 消費生活の基本（計20点）</h2>
+            <div class="text-sm mb-4">
+                <p>私たちの生活は、日々の消費活動によって支えられています。消費生活を賢く送るためには、形のある「物資」と形のない「サービス」の違いを理解し、生活に不可欠な「ニーズ（必要なもの）」と、生活を豊かにする「ウォンツ（欲しいもの）」を区別して考えることが基本となります。このセクションでは、その基礎知識を確認します。</p>
+            </div>
+            <div class="question-block question-text">
+                <p class="font-bold mb-1 question-title">【問題】 次の文章の（　）にあてはまる適切な語句を答えなさい。（各4点）</p>
+                <div class="space-y-2 text-sm pl-4">
+                    <p>私たちは多くの場合、代金を支払って( ① )を買い、それを( ② )しながら生活しています。</p>
+                    <p>商品には、ペンやノートのように形のある( ③ )と、塾やバスの運賃のように形のない( ④ )があります。</p>
+                    <p>商品を購入する際には、生活に不可欠なものである「ニーズ」( ⑤ )と、必ずしも必要ではない「ウォンツ」( ⑥ )を区別して考えることが大切です。</p>
+                    <p>「ニーズ」とは、具体的には「本当に( ⑦ )もの」を指します。</p>
+                    <p>一方、「ウォンツ」とは、具体的には「本当は( ⑧ )もの」を指します。</p>
+                </div>
+            </div>
+
+            <h2 class="text-xl font-bold section-title">2. 契約の仕組みと販売方法（計28点）</h2>
+            <div class="text-sm mb-4">
+                <p>消費生活の基本を理解した上で、次は私たちの消費活動の多くを法的に支えている「契約」という具体的な約束事について学んでいきましょう。私たちの社会は、大小さまざまな「契約」によって成り立っています。</p>
+            </div>
+            <div class="question-block question-text">
+                <p class="font-bold mb-1 question-title">【問題】 次の文章の（　）にあてはまる適切な語句を答えなさい。（各4点）</p>
+                <div class="space-y-2 text-sm pl-4">
+                    <p>売買の( ⑨ )は、消費者の「買いたい」という意思と、販売者の「売りたい」という( ⑩ )が合致したときに成立します。</p>
+                    <p>契約が成立すると、消費者と販売者の両者に、契約内容を守る( ⑪ )と、定められたものを受け取る( ⑫ )が生じます。</p>
+                    <p>未成年者が保護者の同意を得ずに結んだ契約は、後から取り消すことができます。この権利を( ⑬ )といいます。</p>
+                    <p>専門店やデパートなど、お店で販売員が消費者に直接商品を販売する方法を( ⑭ )といいます。</p>
+                    <p>通信販売や訪問販売のように、店舗以外で商品を販売する方法を( ⑮ )といいます。</p>
+                    <p>無店舗販売の具体的な方法として、インターネットやカタログなどを利用する( ⑯ )や、販売員が家庭を訪問する( ⑰ )などがあります。</p>
+                    <p>ネットショップを安全に利用するためには、トラブルがあった際に連絡が取れるよう、販売者の( ⑱ )や( ⑲ )が明記されているかを確認することが重要です。</p>
+                </div>
+            </div>
+
+            <h2 class="text-xl font-bold section-title">3. 消費者トラブルとその対策（計34点）</h2>
+            <div class="text-sm mb-4">
+                <p>契約に関する知識は、時に消費者を狙う悪質な販売方法から自分自身の身を守るための第一歩となります。次に、具体的な消費者トラブルの事例とその対策について学びましょう。</p>
+            </div>
+            <div class="question-block question-text">
+                <p class="font-bold mb-1 question-title">【問題13】悪質商法についてのマッチング問題 （各1点、計10点）</p>
+                <p class="text-sm mb-4">次の(1)～(10)の手口の説明に最も当てはまる商法の名称を、下の (ア)～(コ) から選び、記号で答えなさい。</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 text-sm pl-4 mb-6">
+                    <div>
+                        <p class="border-b border-gray-300 pb-1 mb-1 font-bold">番号と手口の説明</p>
+                        <p>(1) 販売業者や銀行などになりすまし、メールを送るなどして個人情報を盗み出す。</p>
+                        <p>(2) 送られてきたメールのURLをクリックしただけで、不当に利用料金を請求される。</p>
+                        <p>(3) 家屋や水道の点検と称して訪問し、故障を指摘して不安をあおり、高額な工事契約を結ばせる。</p>
+                        <p>(4) 街頭で声をかけ、喫茶店や営業所に連れ込んで商品を購入させる。</p>
+                        <p>(5) 恋人のように親しい関係を築いてから、高額な商品を売りつける。</p>
+                    </div>
+                    <div>
+                        <p class="border-b border-gray-300 pb-1 mb-1 font-bold">番号と手口の説明</p>
+                        <p>(6) 締め切った会場で雰囲気を盛り上げ、冷静な判断力を失わせて高額な商品を購入させる。</p>
+                        <p>(7) 電話などで「抽選に当たった」と巧みに呼び出し、商品を購入させる。</p>
+                        <p>(8) 「景品が当たった」などと喜ばせ、商品の契約を結ばせたり、手数料を振り込ませたりする。</p>
+                        <p>(9) 芸能人などになりすまし、消費者をメールなどで有料サイトに誘導し、サービスを利用させる。</p>
+                        <p>(10) ゲーム中の有料アイテムに課金しすぎてしまい、高額な請求をされる。</p>
+                    </div>
+                </div>
+                
+                <p class="font-bold mt-4">＜商法の名称＞</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-4 text-sm ml-4 border p-2 rounded bg-gray-50">
+                    <p>(ア) アポイントメントセールス</p>
+                    <p>(イ) キャッチセールス</p>
+                    <p>(ウ) サクラサイト商法</p>
+                    <p>(エ) オンラインゲームによるトラブル</p>
+                    <p>(オ) 催眠商法</p>
+                    <p>(カ) 点検商法</p>
+                    <p>(キ) デート商法</p>
+                    <p>(ク) 当選商法</p>
+                    <p>(ケ) フィッシング詐欺</p>
+                    <p>(コ) ワンクリック詐欺</p>
+                </div>
+            </div>
+
+            <div class="question-block question-text">
+                <p class="font-bold mb-1 question-title">【問題】 次の文章の（　）にあてはまる適切な語句を答えなさい。（各4点）</p>
+                <div class="space-y-2 text-sm pl-4">
+                    <p>販売員に強く勧められて契約してしまったり、購入した商品で健康を害したりするなど、消費生活全般に関するトラブルを( ⑳ )といいます。</p>
+                    <p>国の機関として、全国の消費生活センターなどから情報を集約・分析し、各省庁への指導などを行う( ㉑ )や、その管轄下で消費者への情報提供などを行う( ㉒ )があります。</p>
+                    <p>市町村などの地方公共団体が管轄し、地域住民からの消費生活に関する相談を受け付けている機関を( ㉓ )といいます。</p>
+                    <p>訪問販売などで契約した場合でも、法律で定められた一定の期間内であれば、無条件で契約を取り消すことができる制度を( ㉔ )といいます。</p>
+                    <p>クーリング・オフ制度を利用する際、契約解除を通知した証拠を残すために、日本郵便の( ㉕ )郵便を利用することが推奨されます。</p>
+                    <p>訪問販売において、クーリング・オフ制度が適用される期間は、契約書面を受け取った日から( ㉖ )日間です。</p>
+                </div>
+            </div>
+
+            <h2 class="text-xl font-bold section-title">4. 消費者の権利と責任（計18点）</h2>
+            <div class="text-sm mb-4">
+                <p>トラブルを未然に防ぎ、万一の際に適切に行動するためには、法律や制度を知ることと同時に、消費者としての自らの「権利」と「責任」を自覚することが最も重要となります。</p>
+            </div>
+            <div class="question-block question-text">
+                <p class="font-bold mb-1 question-title">【問題】 次の文章の（　）にあてはまる適切な語句を答えなさい。（各3点）</p>
+                <div class="space-y-2 text-sm pl-4">
+                    <p>消費者の権利の一つで、生命や健康を脅かされることなく、安全な商品やサービスを利用できることを「( ㉗ )である権利」といいます。</p>
+                    <p>商品の品質や価格、表示など、購入を判断するために必要な情報を与えられる権利を「( ㉘ )される権利」といいます。</p>
+                    <p>賢い消費者になるために必要な知識や能力を身につけるための機会を与えられる権利を「( ㉙ )を受ける権利」といいます。</p>
+                    <p>消費者の責任の一つで、広告や情報をうのみにせず、本当に正しいか、必要かを自分の頭で考え、意見を持つことを「( ㉚ )な意見を持つ」責任といいます。</p>
+                    <p>商品やサービスに問題があった場合、泣き寝入りせず、事業者に改善を求めたり、意見を表明したりすることを「( ㉛ )し、( ㉜ )する責任」といいます。</p>
+                    <p>一人では解決が難しい問題に対して、他の消費者と協力し、より良い社会を目指して行動することを「( ㉝ )・連帯する責任」といいます。</p>
+                </div>
+            </div>
+            
+            <p class="text-lg font-bold mt-8 text-center">--------------------------------------------------------------------------------</p>
+            <p class="text-lg font-bold mt-4 text-center">これでテストは終了です。</p>
+        </div>
+
+        <h2 class="text-xl font-bold section-title page-break-before">第2部：解答編</h2>
+        <div class="bg-yellow-50 p-4 rounded-lg shadow-inner">
+            <h3 class="text-lg font-bold mb-4 font-sans border-b pb-2">中学校家庭科 消費生活に関する理解度確認テスト - 解答</h3>
+
+            <div class="mb-6">
+                <h4 class="font-bold text-base mb-2 text-blue-700">【穴埋め問題 (1)～(33) の解答】</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-1 text-sm pl-2">
+                    <p>①: <strong>商品</strong></p>
+                    <p>②: <strong>利用</strong></p>
+                    <p>③: <strong>物資</strong></p>
+                    <p>④: <strong>サービス</strong></p>
+                    <p>⑤: <strong>必要なもの</strong></p>
+                    <p>⑥: <strong>欲しいもの</strong></p>
+                    <p>⑦: <strong>必要なもの</strong></p>
+                    <p>⑧: <strong>なくてもいい</strong></p>
+                    <p>⑨: <strong>契約</strong></p>
+                    <p>⑩: <strong>意思</strong></p>
+                    <p>⑪: <strong>義務</strong></p>
+                    <p>⑫: <strong>権利</strong></p>
+                    <p>⑬: <strong>未成年者取消権</strong></p>
+                    <p>⑭: <strong>店舗販売</strong></p>
+                    <p>⑮: <strong>無店舗販売</strong></p>
+                    <p>⑯: <strong>通信販売</strong></p>
+                    <p>⑰: <strong>訪問販売</strong></p>
+                    <p>⑱: <strong>住所</strong></p>
+                    <p>⑲: <strong>電話番号</strong></p>
+                    <p>⑳: <strong>消費者トラブル</strong></p>
+                    <p>㉑: <strong>消費者庁</strong></p>
+                    <p>㉒: <strong>国民生活センター</strong></p>
+                    <p>㉓: <strong>消費生活センター</strong></p>
+                    <p>㉔: <strong>クーリング・オフ</strong></p>
+                    <p>㉕: <strong>内容証明</strong></p>
+                    <p>㉖: <strong>8</strong></p>
+                    <p>㉗: <strong>安全</strong></p>
+                    <p>㉘: <strong>知らされる</strong></p>
+                    <p>㉙: <strong>消費者教育</strong></p>
+                    <p>㉚: <strong>批判的</strong></p>
+                    <p>㉛: <strong>主張</strong></p>
+                    <p>㉜: <strong>行動</strong></p>
+                    <p>㉝: <strong>団結</strong></p>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-base mb-2 text-blue-700">【問題13】悪質商法マッチング解答</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-1 text-sm pl-2">
+                    <p>(1) <strong>ケ</strong> (フィッシング詐欺)</p>
+                    <p>(2) <strong>コ</strong> (ワンクリック詐欺)</p>
+                    <p>(3) <strong>カ</strong> (点検商法)</p>
+                    <p>(4) <strong>イ</strong> (キャッチセールス)</p>
+                    <p>(5) <strong>キ</strong> (デート商法)</p>
+                    <p>(6) <strong>オ</strong> (催眠商法)</p>
+                    <p>(7) <strong>ア</strong> (アポイントメントセールス)</p>
+                    <p>(8) <strong>ク</strong> (当選商法)</p>
+                    <p>(9) <strong>ウ</strong> (サクラサイト商法)</p>
+                    <p>(10) <strong>エ</strong> (オンラインゲームによるトラブル)</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
