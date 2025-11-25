@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>総合音楽知識テスト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        body {
+            font-family: 'Noto Serif JP', serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            background-color: #f3f4f6;
+        }
+        /* 以前の.pageを廃止し、全体を包む.paperクラスに変更 */
+        .paper {
+            background-color: white;
+            max-width: 210mm; /* A4幅 */
+            min-height: 297mm;
+            margin: 20px auto;
+            padding: 20mm;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-sizing: border-box;
+        }
+        .question-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        .section-title {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .choice-list {
+            padding-left: 1em;
+            text-indent: -1em;
+            margin-left: 1.5em;
+        }
+        
+        /* 問題の途中でページが切れないようにする設定 */
+        .question-block {
+            page-break-inside: avoid; /* 古いブラウザ向け */
+            break-inside: avoid;      /* 標準 */
+            margin-bottom: 1.5rem;    /* 問題間の余白 */
+        }
+        .instruction-box {
+            background-color: #f3f4f6;
+            padding: 8px;
+            border-left: 4px solid #3b82f6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+        .fill-in-the-blank {
+            margin-left: 10px;
+            margin-bottom: 10px;
+            padding: 5px 0;
+            border-bottom: 1px dashed #aaa;
+            line-height: 2;
+        }
+
+
+        @media print {
+            body {
+                background-color: white;
+                -webkit-print-color-adjust: exact;
+            }
+            .paper {
+                width: 100%;
+                max-width: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                min-height: auto;
+            }
+            .no-print {
+                display: none;
+            }
+            /* 解答編の直前だけ改ページを入れる */
+            .page-break-before {
+                page-break-before: always;
+                break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print bg-gray-800 text-white p-4 text-center sticky top-0 z-50 shadow-md">
+        <p class="mb-2">自動改ページ対応版です。印刷プレビューで確認してください。</p>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 flex items-center justify-center mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            印刷する
+        </button>
+    </div>
+
+    <div class="paper">
+        <h1 class="text-3xl text-center font-bold mb-8 font-sans border-b-4 border-double border-gray-800 pb-2">とことん覚える音楽科</h1>
+        
+        <div class="mb-6 bg-gray-50 p-3 border rounded">
+            <h2 class="text-lg font-bold font-sans">指示</h2>
+            <p class="text-sm">これから、音楽に関する知識を問うテストを始めます。 問題は**全26問、100点満点**です。各設問の配点を確認し、時間内に解答してください。</p>
+        </div>
+        
+        <h2 class="text-xl font-bold section-title">1. 問題 (合計100点)</h2>
+
+        <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第一部：尺八楽「巣鶴鈴慕」について (合計30点)</h3>
+        <div class="instruction-box">
+            指示: 第一部では、日本の伝統音楽である尺八楽「巣鶴鈴慕」について、その背景や奏法に関する理解を問います。
+        </div>
+
+        <div class="space-y-6">
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問1. 楽器「尺八」の名称は、その物理的な特徴に由来します。どのような特徴から名付けられたか、具体的に説明しなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問2. 楽曲「巣鶴鈴慕」は、18世紀半ば頃から親しまれていた別の曲をもとに作られました。その原曲のタイトルを答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問3. 江戸時代、宗教的な修行の一環として尺八を演奏し、諸国を巡っていた僧侶たちの呼称を答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問4. 初世黒沢琴古が各地に伝わる尺八の曲を収集・編纂したものを、彼の名を冠して何と呼びますか。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問5. 親子の鶴の生涯を描写した物語的な楽曲である「巣鶴鈴慕」は、全部でいくつの段から構成されていると伝えられていますか。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問6. 尺八の奏法において、閉じた指孔を徐々に開けることで音高を滑らかに引き上げる技法の名称を答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+        </div>
+        
+        <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第二部：「帰れソレントへ」について (合計30点)</h3>
+        <div class="instruction-box">
+            指示: 第二部では、ナポリ民謡の名作「帰れソレントへ」について、作者、制作背景、関連する音楽理論の知識を問います。
+        </div>
+
+        <div class="space-y-6">
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問7. 「帰れソレントへ」の作詞者と作曲者の名前を、資料に記載されている通りにそれぞれ答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問8. この楽曲が作曲された西暦を答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問9. 当時のソレント市長が、経済的支援を期待してある人物の歓心を得るためにこの曲の制作を依頼しました。この訪問してきた人物の役職を答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問10. 作曲者であるE. デ クルティスは、イタリアのある都市の出身です。その都市名を答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問11. 「帰れソレントへ」では、同じ主音を持つ長調と短調が効果的に使用されています。このような調の関係性を指す音楽用語を答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問12. イタリア語で「歌」を意味し、日本では特に19世紀から20世紀初頭にかけて作られたナポリの歌曲群を指すことが多い音楽ジャンルの正式名称を答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+        </div>
+
+        <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第三部：合唱の基礎知識について (合計20点)</h3>
+        <div class="instruction-box">
+            指示: 第三部では、合唱における発声の基礎技術に関する知識を問います。以下の文章の（ ）に当てはまる最も適切な語句を答えなさい。
+        </div>
+
+        <div class="space-y-3 pl-4">
+            <div class="question-block">
+                <p class="fill-in-the-blank">問13 (①). 美しい歌声のためには、まず良い（ ①<span class="text-red-500">___________</span> ）を保つことが重要です。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問14 (②). 良い姿勢の次は、歌声の源となる（ ②<span class="text-red-500">___________</span> ）の技術が求められます。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問15 (③). 呼吸を支える重要な筋肉で、息を吐く際に手を押し上げるように動く部分を（ ③<span class="text-red-500">___________</span> ）といいます。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問16 (④). 歌声の力強い（ ④<span class="text-red-500">___________</span> ）は、主に（ ③ ）の跳ね返す力によって生み出されます。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問17 (⑤). 歌唱に適した呼吸法として、胸ではなく腹部を意識して息を吸う（ ⑤<span class="text-red-500">___________</span> ）呼吸が推奨されます。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問18 (⑥). 口やのどを大きく開くことで、声の響きを豊かにする空間である（ ⑥<span class="text-red-500">___________</span> ）が広がります。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問19 (⑦). 「びっくりスローモーション」の練習で目を開くことは、歌う際の（ ⑦<span class="text-red-500">___________</span> ）を意識することに繋がります。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問20 (⑧). ハミングの練習は、特に顔の上部にある（ ⑧<span class="text-red-500">___________</span> ）に声を響かせる感覚を養うのに効果的です。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問21 (⑨). 声を豊かに響かせるための、鼻腔や口腔といった体内の空間を総称して（ ⑨<span class="text-red-500">___________</span> ）と呼びます。（2点）</p>
+            </div>
+            <div class="question-block">
+                <p class="fill-in-the-blank">問22 (⑩). 歌詞の表現力を高め、チームの団結を強める効果があるとされる、伴奏をつけずに行う練習方法を何と呼びますか。（2点）</p>
+            </div>
+        </div>
+
+        <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第四部：作曲家 G.F.ヘンデルについて (合計20点)</h3>
+        <div class="instruction-box">
+            指示: 最後のセクションでは、後期バロック音楽の巨匠、G.F.ヘンデルに関する知識を評価します。彼の生涯、作品、関連する音楽形式について答えなさい。
+        </div>
+
+        <div class="space-y-6">
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問23. ヘンデルが主に活躍した音楽史の時代区分を答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問24. ヘンデルはドイツで生まれましたが、音楽家として長く活躍し、最終的に帰化した国はどこですか。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問25. ヘンデルの代表作であるオラトリオ「メサイア」の中で、キリストの復活を晴れやかに歌い上げる、第2部の終曲として特に有名な合唱曲のタイトルを答えなさい。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">問26. バロック時代に多く作られた音楽形式で、宗教的な題材に基づき、独唱・合唱・管弦楽によって構成される大規模な声楽作品を何と呼びますか。（5点）</p>
+                <div class="h-8 border-b border-dashed border-gray-400 mx-4 mt-2"></div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12 mb-8 text-lg font-bold">
+            問題は以上です。お疲れ様でした。
+        </div>
+
+        <h2 class="text-xl font-bold section-title page-break-before">2. 解答・解説（全26問）</h2>
+        <div class="instruction-box">
+            指示: 以下に各問題の解答と解説を記載します。自己採点を行い、理解を深めてください。
+        </div>
+
+        <div class="answer-section mt-6 space-y-3">
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問1</div>
+                <div><span class="font-bold mr-2">解答:</span> 標準的な楽器の全長が一尺八寸（約55cm）であること。 <span class="text-sm text-gray-500 ml-2">解説: 「尺八」という名称は、その標準的な長さ「一尺八寸」に直接由来しています。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問2</div>
+                <div><span class="font-bold mr-2">解答:</span> 鶴の巣籠（つるのすごもり） <span class="text-sm text-gray-500 ml-2">解説: 「巣鶴鈴慕」は、18世紀半ば頃から伝わる「鶴の巣籠」という楽曲をもとに作られたとされています。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問3</div>
+                <div><span class="font-bold mr-2">解答:</span> 虚無僧（こむそう） <span class="text-sm text-gray-500 ml-2">解説: 江戸時代、禅宗の一派である普化宗の僧侶たちは「虚無僧」と呼ばれ、修行のために尺八を吹きながら諸国を行脚しました。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問4</div>
+                <div><span class="font-bold mr-2">解答:</span> 琴古流本曲（きんこりゅうほんきょく） <span class="text-sm text-gray-500 ml-2">解説: 虚無僧であった初世黒沢琴古が収集・整理した尺八の楽曲群を、彼の功績を称えて「琴古流本曲」と呼びます。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問5</div>
+                <div><span class="font-bold mr-2">解答:</span> 12の段 <span class="text-sm text-gray-500 ml-2">解説: 親鳥の出会いから子の巣立ち、そして別れまでを描くこの物語的な楽曲は、全12段の構成で伝えられています。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問6</div>
+                <div><span class="font-bold mr-2">解答:</span> スリ上げ <span class="text-sm text-gray-500 ml-2">解説: 尺八の特殊な奏法の一つで、指孔を閉じた状態から徐々に開けることで、滑らかに音高を上昇させる技法です。</span></div>
+            </div>
+            
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問7</div>
+                <div><span class="font-bold mr-2">解答:</span> 作詞者: G.B. デ クルティス、作曲者: E. デ クルティス <span class="text-sm text-gray-500 ml-2">解説: 資料には兄弟の名がイニシャルで記載されています。兄のジャン・バッティスタ（G.B.）が作詞、弟のエルネスト（E.）が作曲しました。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問8</div>
+                <div><span class="font-bold mr-2">解答:</span> 1902年 <span class="text-sm text-gray-500 ml-2">解説: この曲は、ソレントを訪れた要人を歓迎するために1902年に制作されました。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問9</div>
+                <div><span class="font-bold mr-2">解答:</span> イタリアの首相 <span class="text-sm text-gray-500 ml-2">解説: ソレント市長が、ナポリを訪問中であったイタリアの首相をもてなす目的で、クルティス兄弟に作詞作曲を依頼したとされています。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問10</div>
+                <div><span class="font-bold mr-2">解答:</span> ナポリ <span class="text-sm text-gray-500 ml-2">解説: 作曲者のエルネスト・デ クルティスは、風光明媚な港町ナポリの出身です。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問11</div>
+                <div><span class="font-bold mr-2">解答:</span> 同主調（どうしゅちょう） <span class="text-sm text-gray-500 ml-2">解説: 同じ主音（この曲ではハ音）を持つ長調（ハ長調）と短調（ハ短調）の関係を「同主調」と言います。長調の明るさと短調の切なさが効果的に対比されています。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問12</div>
+                <div><span class="font-bold mr-2">解答:</span> カンツォーネ・ナポリターナ <span class="text-sm text-gray-500 ml-2">解説: イタリア語で「ナポリの歌」を意味します。日本ではこれを単に「カンツォーネ」と呼ぶことが多いです。</span></div>
+            </div>
+
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問13 (①)</div>
+                <div><span class="font-bold mr-2">解答:</span> 姿勢 <span class="text-sm text-gray-500 ml-2">解説: 歌唱の基本は、息を深く吸い、体を効果的に響かせるための土台となる正しい姿勢から始まります。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問14 (②)</div>
+                <div><span class="font-bold mr-2">解答:</span> 呼吸 <span class="text-sm text-gray-500 ml-2">解説: 良い姿勢ができて初めて、歌声のエネルギー源となる深く安定した呼吸が可能になります。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問15 (③)</div>
+                <div><span class="font-bold mr-2">解答:</span> 横隔膜 <span class="text-sm text-gray-500 ml-2">解説: 横隔膜は、肺の下にあるドーム状の筋肉で、腹式呼吸において中心的な役割を果たします。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問16 (④)</div>
+                <div><span class="font-bold mr-2">解答:</span> 支え <span class="text-sm text-gray-500 ml-2">解説: 息を吐く際に横隔膜が跳ね返る力（抵抗）が、安定した力強い声を出すための「支え」となります。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問17 (⑤)</div>
+                <div><span class="font-bold mr-2">解答:</span> 腹式 <span class="text-sm text-gray-500 ml-2">解説: 歌唱では、胸郭をあまり動かさず、横隔膜を上下させることで効率よく息をコントロールする「腹式呼吸」が基本です。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問18 (⑥)</div>
+                <div><span class="font-bold mr-2">解答:</span> 口腔（こうくう） <span class="text-sm text-gray-500 ml-2">解説: のどをリラックスさせて開くことで、口の中の空間（口腔）が広がり、声がより豊かに響きます。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問19 (⑦)</div>
+                <div><span class="font-bold mr-2">解答:</span> 表情筋 <span class="text-sm text-gray-500 ml-2">解説: 資料の「目が開く」という練習は、歌詞の世界を表現するために顔の筋肉（表情筋）を意識的に使うことの重要性を示唆しています。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問20 (⑧)</div>
+                <div><span class="font-bold mr-2">解答:</span> 鼻腔（びくう） <span class="text-sm text-gray-500 ml-2">解説: ハミングは、口を閉じて鼻から息を抜くように発声するため、鼻の奥の空間（鼻腔）での響きを体感しやすい練習方法です。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問21 (⑨)</div>
+                <div><span class="font-bold mr-2">解答:</span> 共鳴腔（きょうめいくう） <span class="text-sm text-gray-500 ml-2">解説: 喉で生まれた声を増幅させ、豊かな響きを与える体内の空間（口腔、鼻腔、咽頭腔など）をまとめて「共鳴腔」と呼びます。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問22 (⑩)</div>
+                <div><span class="font-bold mr-2">解答:</span> 伴奏なしで歌う訓練 / ア・カペラ <span class="text-sm text-gray-500 ml-2">解説: 楽器の補助なしで歌う練習（ア・カペラ）は、音程やリズムを正確に捉える能力を高め、パート内の結束を強めるのに非常に効果的です。</span></div>
+            </div>
+
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問23</div>
+                <div><span class="font-bold mr-2">解答:</span> バロック時代（後期バロック） <span class="text-sm text-gray-500 ml-2">解説: ヘンデルは、J.S.バッハと並び、17世紀から18世紀半ばにかけてのバロック時代、特にその後期を代表する作曲家です。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問24</div>
+                <div><span class="font-bold mr-2">解答:</span> イギリス <span class="text-sm text-gray-500 ml-2">解説: ドイツで生まれたヘンデルは、イタリアでオペラ作曲家として成功した後、ロンドンに渡り、後半生はイギリス国民として活躍しました。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問25</div>
+                <div><span class="font-bold mr-2">解答:</span> ハレルヤ・コーラス <span class="text-sm text-gray-500 ml-2">解説: 資料には「ハレカ・コーラス」という表記がありますが、これは「ハレルヤ・コーラス」の誤記です。キリストの復活を讃える輝かしい合唱曲です。</span></div>
+            </div>
+            <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                <div class="font-bold">問26</div>
+                <div><span class="font-bold mr-2">解答:</span> オラトリオ <span class="text-sm text-gray-500 ml-2">解説: 物語性を持つ宗教的な大規模声楽曲で、オペラのように演技や舞台装置を伴わない演奏会形式で上演されます。ヘンデルの「メサイア」は、オラトリオの代表的な傑作です。</span></div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
