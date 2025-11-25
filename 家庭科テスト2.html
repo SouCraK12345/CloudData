@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家庭科「私たちの消費生活」単元末テスト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        body {
+            font-family: 'Noto Serif JP', serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            background-color: #f3f4f6;
+        }
+        /* 以前の.pageを廃止し、全体を包む.paperクラスに変更 */
+        .paper {
+            background-color: white;
+            max-width: 210mm; /* A4幅 */
+            min-height: 297mm;
+            margin: 20px auto;
+            padding: 20mm;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-sizing: border-box;
+        }
+        .question-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        .section-title {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        
+        /* 問題の途中でページが切れないようにする設定 */
+        .question-block {
+            page-break-inside: avoid; /* 古いブラウザ向け */
+            break-inside: avoid;      /* 標準 */
+            margin-bottom: 1.5rem;    /* 問題間の余白 */
+        }
+        .solution-grid > div > div:first-child {
+            /* 解答の番号を強調 */
+            font-weight: 700;
+            color: #3b82f6; /* blue-600 */
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                -webkit-print-color-adjust: exact;
+            }
+            .paper {
+                width: 100%;
+                max-width: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                min-height: auto;
+            }
+            .no-print {
+                display: none;
+            }
+            /* 解答編の直前だけ改ページを入れる */
+            .page-break-before {
+                page-break-before: always;
+                break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print bg-gray-800 text-white p-4 text-center sticky top-0 z-50 shadow-md">
+        <p class="mb-2">自動改ページ対応版です。印刷プレビューで確認してください。</p>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 flex items-center justify-center mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            印刷する
+        </button>
+    </div>
+
+    <div class="paper">
+        <h1 class="text-3xl text-center font-bold mb-8 font-sans border-b-4 border-double border-gray-800 pb-2">家庭科「私たちの消費生活」単元末テスト</h1>
+        
+        <div class="mb-8">
+            <h2 class="text-xl font-bold section-title">第1部：問題（100点満点）</h2>
+            
+            <div class="mb-8 p-4 border border-gray-300 rounded-lg bg-gray-50 text-sm">
+                <h2 class="text-xl font-bold text-gray-700 mb-2 font-sans">はじめに</h2>
+                <p>このテストは、中学校家庭科の「私たちの消費生活」に関する単元で学んだ知識の理解度を測ることを目的としています。私たちの日常生活に深く関わる消費活動について、基本的な概念から契約の仕組み、消費者トラブルへの対処法、そして社会の一員としての消費者の権利と責任に至るまで、皆さんの学習成果を確認します。</p>
+                <p>テストは合計100点満点で、大きく以下の4つのセクションで構成されています。</p>
+                <ul class="list-disc ml-6 mt-2">
+                    <li>消費生活の基本用語（20点）</li>
+                    <li>契約の仕組みと販売・支払い方法（30点）</li>
+                    <li>消費者トラブルと対策（30点）</li>
+                    <li>消費者の権利と責任（20点）</li>
+                </ul>
+                <p class="mt-2">すべての問題は、学習した知識を正確に記述できるかを問う、**語句記述形式**です。単元全体をよく復習し、落ち着いて問題に取り組んでください。</p>
+            </div>
+
+
+            <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第1章：消費生活の基本用語（計20点）</h3>
+            <p class="mb-4">まず、私たちが日々行う消費活動の基礎となる重要な用語の理解を問います。これらの概念を正しく理解することは、情報を整理し、賢い消費者として適切な判断を下すための第一歩となります。</p>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">【問題1】次の文章の（　）にあてはまる適切な語句を答えなさい。（各2点）</p>
+                <div class="pl-4 space-y-2">
+                    <p>私たちが代金を支払って購入する商品には、形のある（ <span class="text-lg text-red-600 font-bold underline">①</span> ）と、形のない（ <span class="text-lg text-red-600 font-bold underline">②</span> ）があります。</p>
+                    <p>交通機関の利用や専門家による技術提供など、形はないが代金を支払ってその便益を利用するものを（ <span class="text-lg text-red-600 font-bold underline">③</span> ）という。</p>
+                    <p>食料や衣類など、生活を送る上で本当に必要不可欠なものを（ <span class="text-lg text-red-600 font-bold underline">④</span> ）という。</p>
+                    <p>なくても生活はできるが、所有することで欲求を満たし、生活をより豊かにするものを（ <span class="text-lg text-red-600 font-bold underline">⑤</span> ）という。</p>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">【問題2】次の項目は「物資」と「サービス」のどちらにあたるか答えなさい。（各2点）</p>
+                <div class="pl-4 grid grid-cols-2 sm:grid-cols-3 gap-y-2">
+                    <p>クリーニング （ <span class="text-lg text-red-600 font-bold underline">⑥</span> ）</p>
+                    <p>薬 （ <span class="text-lg text-red-600 font-bold underline">⑦</span> ）</p>
+                    <p>電気 （ <span class="text-lg text-red-600 font-bold underline">⑧</span> ）</p>
+                    <p>学習塾 （ <span class="text-lg text-red-600 font-bold underline">⑨</span> ）</p>
+                    <p>Tシャツ （ <span class="text-lg text-red-600 font-bold underline">⑩</span> ）</p>
+                    <p>水道代 （ <span class="text-lg text-red-600 font-bold underline">⑪</span> ）</p>
+                </div>
+            </div>
+
+            <p class="text-sm mt-4 text-gray-500 border-t pt-2">これらの基本用語を理解した上で、次に商品を購入する際の社会的な約束事である「契約」について見ていきましょう。</p>
+
+
+            <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第2章：契約の仕組みと販売・支払い方法（計30点）</h3>
+            <p class="mb-4">消費生活における「契約」は、単なる口約束ではなく、法的な意味を持つ重要な行為です。契約が成立することによって、私たちには権利と義務が生じます。また、現代では販売方法や支払い方法も多様化しています。これらの仕組みを正しく理解することは、自分に合った安全な取引を選択する上で不可欠です。</p>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">【問題】次の文章の（　）にあてはまる適切な語句を答えなさい。（各3点）</p>
+                <div class="pl-4 space-y-2">
+                    <p>消費者の「買いたい」という意思表示と、販売者の「売りたい」という意思表示が合致したときに（ <span class="text-lg text-red-600 font-bold underline">⑫</span> ）が成立する。</p>
+                    <p>契約が成立すると、消費者は商品を受け取る（ <span class="text-lg text-red-600 font-bold underline">⑬</span> ）を得る。</p>
+                    <p>また、契約が成立すると、消費者は代金を支払う（ <span class="text-lg text-red-600 font-bold underline">⑭</span> ）を負う。</p>
+                    <p>保護者の同意を得ずに未成年者が結んだ契約を、後から取り消すことができる権利を（ <span class="text-lg text-red-600 font-bold underline">⑮</span> ）という。</p>
+                    <p>インターネットやカタログ、訪問販売など、店舗以外で商品を販売する方法を総称して（ <span class="text-lg text-red-600 font-bold underline">⑯</span> ）という。</p>
+                    <p>無店舗販売のうち、インターネットのショッピングサイトやテレビショッピングなどを利用する方法を（ <span class="text-lg text-red-600 font-bold underline">⑰</span> ）という。</p>
+                    <p>支払い方法のうち、商品を受け取る前に支払う方法を（ <span class="text-lg text-red-600 font-bold underline">⑱</span> ）という。</p>
+                    <p>支払い方法のうち、商品と同時に支払う方法を（ <span class="text-lg text-red-600 font-bold underline">⑲</span> ）という。</p>
+                    <p>支払い方法のうち、商品を受け取った後に支払う方法を（ <span class="text-lg text-red-600 font-bold underline">⑳</span> ）という。</p>
+                    <p>クレジットカードによる支払いは、支払い方法の分類のうち（ <span class="text-lg text-red-600 font-bold underline">㉑</span> ）にあたる。</p>
+                </div>
+            </div>
+
+            <p class="text-sm mt-4 text-gray-500 border-t pt-2">しかし、これらの契約や取引の中には、消費者を狙った悪質な手口も存在します。次に、そうしたトラブルから身を守るための知識を学びましょう。</p>
+
+
+            <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第3章：消費者トラブルと対策（計30点）</h3>
+            <p class="mb-4">私たちの周りには、巧妙化する手口で消費者を狙う悪質な商法が存在します。その具体的な内容を知ることは、被害を未然に防ぐ上で極めて重要です。また、万が一トラブルに巻き込まれた際に利用できる、クーリング・オフ制度などの公的な救済制度について理解を深めましょう。</p>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">【問題1】次の説明文が示す悪質な商法や詐欺の名称を答えなさい。（各3点）</p>
+                <div class="pl-4 space-y-2">
+                    <p>有名な企業になりすました偽のメールやウェブサイトで個人情報を盗み出す手口。（ <span class="text-lg text-red-600 font-bold underline">㉒</span> ）</p>
+                    <p>街頭で声をかけ、営業所などに連れ込んで高額な商品を契約させる手口。（ <span class="text-lg text-red-600 font-bold underline">㉓</span> ）</p>
+                    <p>「無料で点検します」と訪問し、嘘の故障を指摘して不安をあおり高額な契約を迫る手口。（ <span class="text-lg text-red-600 font-bold underline">㉔</span> ）</p>
+                    <p>恋愛感情を利用して親しい関係を築いた後、高額な商品を売りつける手口。（ <span class="text-lg text-red-600 font-bold underline">㉕</span> ）</p>
+                    <p>閉め切った会場で雰囲気を盛り上げ、参加者の冷静な判断力を失わせて商品を売りつける手口。（ <span class="text-lg text-red-600 font-bold underline">㉖</span> ）</p>
+                    <p>芸能人などになりすまし、有料サイトに誘導して高額なサービスを利用させる手口。（ <span class="text-lg text-red-600 font-bold underline">㉗</span> ）</p>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">【問題2】次の問いに答えなさい。（各4点）</p>
+                <div class="pl-4 space-y-2">
+                    <p>訪問販売などで不意打ち的に契約した場合に、一定期間内であれば無条件で契約を取り消せる制度を（ <span class="text-lg text-red-600 font-bold underline">㉘</span> ）という。</p>
+                    <p>クーリング・オフ制度が原則として適用されない販売方法の代表例を一つ答えなさい。（ <span class="text-lg text-red-600 font-bold underline">㉙</span> ）</p>
+                    <p>地方公共団体が設置する、商品やサービスに関する最も身近な相談窓口を（ <span class="text-lg text-red-600 font-bold underline">㉚</span> ）という。</p>
+                </div>
+            </div>
+
+            <p class="text-sm mt-4 text-gray-500 border-t pt-2">トラブルを避ける知識も大切ですが、より根本的に、消費者としてどのような権利を持ち、社会に対してどんな責任を負うのかを理解することが重要です。最後に、消費者の権利と責任について確認します。</p>
+
+
+            <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第4章：消費者の権利と責任（計20点）</h3>
+            <p class="mb-4">私たちは単なる買い手であるだけでなく、その消費行動を通じて社会や環境に影響を与える存在です。国際的な基準として確立されている消費者の「権利」と、それに伴う「責任」について理解し、自覚することが、公正で持続可能な社会を築く上で消費者一人ひとりに求められる姿勢です。</p>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">【問題1】次の説明文が示す「消費者の権利」の名称を答えなさい。（各4点）</p>
+                <div class="pl-4 space-y-2">
+                    <p>購入する商品やサービスが、生命や健康を脅かすことのない、安全なものであることを求める権利。（ <span class="text-lg text-red-600 font-bold underline">㉛</span> ）</p>
+                    <p>商品の品質や価格など、購入を判断するために必要な情報を正確に知らされる権利。（ <span class="text-lg text-red-600 font-bold underline">㉜</span> ）</p>
+                    <p>購入した商品に欠陥があった場合に、適切な補償を受けられる権利。（ <span class="text-lg text-red-600 font-bold underline">㉝</span> ）</p>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <p class="font-bold mb-1 question-title">【問題2】次の説明文が示す「消費者の責任」の名称を答えなさい。（各4点）</p>
+                <div class="pl-4 space-y-2">
+                    <p>自分の消費行動が地球環境に与える影響を理解し、環境保全に配慮する責任。（ <span class="text-lg text-red-600 font-bold underline">㉞</span> ）</p>
+                    <p>商品やサービスに不満がある場合、それを事業者や行政に伝え、改善を求めて行動する責任。（ <span class="text-lg text-red-600 font-bold underline">㉟</span> ）</p>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="page-break-before solution-section mt-10 p-5 bg-gray-50 rounded-lg">
+            <h2 class="text-2xl text-center font-bold text-red-700 mb-6 section-title border-red-700 font-sans">第2部：解答</h2>
+            
+            <h3 class="text-lg font-bold mt-6 mb-4 bg-red-100 p-2 rounded font-sans text-red-800">解答一覧</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 solution-grid text-sm text-center">
+                
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">①</div> <div>物資</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">②</div> <div>サービス</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">③</div> <div>サービス</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">④</div> <div>ニーズ</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑤</div> <div>ウォンツ</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑥</div> <div>サービス</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑦</div> <div>物資</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑧</div> <div>サービス</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑨</div> <div>サービス</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑩</div> <div>物資</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑪</div> <div>サービス</div>
+                </div>
+                
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑫</div> <div>契約</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑬</div> <div>権利</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑭</div> <div>義務</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑮</div> <div>未成年者取消権</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑯</div> <div>無店舗販売</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑰</div> <div>通信販売</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑱</div> <div>前払い</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑲</div> <div>即時払い</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">⑳</div> <div>後払い</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉑</div> <div>後払い</div>
+                </div>
+                
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉒</div> <div>フィッシング詐欺</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉓</div> <div>キャッチセールス</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉔</div> <div>点検商法</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉕</div> <div>デート商法</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉖</div> <div>催眠商法</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉗</div> <div>サクラサイト商法</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉘</div> <div>クーリング・オフ</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉙</div> <div>通信販売</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉚</div> <div>消費生活センター</div>
+                </div>
+                
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉛</div> <div>安全である権利</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉜</div> <div>知らされる権利</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉝</div> <div>補償を受ける権利</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉞</div> <div>環境への配慮の責任</div>
+                </div>
+                <div class="col-span-1 p-2 bg-white border rounded">
+                    <div class="font-bold">㉟</div> <div>主張し、行動する責任</div>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+
+</body>
+</html>
