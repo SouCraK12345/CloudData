@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>保健体育 正誤問題テスト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 15mm;
+        }
+        body {
+            font-family: 'Noto Serif JP', serif;
+            color: #1a1a1a;
+            line-height: 1.6;
+            background-color: #f3f4f6;
+        }
+        /* 以前の.pageを廃止し、全体を包む.paperクラスに変更 */
+        .paper {
+            background-color: white;
+            max-width: 210mm; /* A4幅 */
+            min-height: 297mm;
+            margin: 20px auto;
+            padding: 20mm;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-sizing: border-box;
+        }
+        .question-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 700;
+        }
+        .section-title {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .choice-list {
+            padding-left: 1em;
+            text-indent: -1em;
+            margin-left: 1.5em;
+        }
+        
+        /* 問題の途中でページが切れないようにする設定 */
+        .question-block {
+            page-break-inside: avoid; /* 古いブラウザ向け */
+            break-inside: avoid;      /* 標準 */
+            margin-bottom: 1.5rem;    /* 問題間の余白 */
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                -webkit-print-color-adjust: exact;
+            }
+            .paper {
+                width: 100%;
+                max-width: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                min-height: auto;
+            }
+            .no-print {
+                display: none;
+            }
+            /* 解答編の直前だけ改ページを入れる */
+            .page-break-before {
+                page-break-before: always;
+                break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print bg-gray-800 text-white p-4 text-center sticky top-0 z-50 shadow-md">
+        <p class="mb-2">自動改ページ対応版です。印刷プレビューで確認してください。</p>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 flex items-center justify-center mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            印刷する
+        </button>
+    </div>
+
+    <div class="paper">
+        <h1 class="text-3xl text-center font-bold mb-8 font-sans border-b-4 border-double border-gray-800 pb-2">保健体育 正誤問題テスト</h1>
+        
+        <div class="mb-8">
+            <h2 class="text-xl font-bold section-title">指示: 以下の文章を読み、内容が正しければ「〇」、間違っていれば「×」をつけなさい。（全50問・100点）</h2>
+            
+            <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第1部：保健分野 (全18問・36点)</h3>
+
+            <p class="text-base font-bold section-title mb-2 mt-4">感染症の理解と予防</p>
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問1</p>
+                <div class="flex-grow">
+                    <p class="text-base">細菌は細胞壁を持たない単細胞生物であり、その増殖は主に抗ウイルス薬によって抑制される。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問2</p>
+                <div class="flex-grow">
+                    <p class="text-base">ウイルスは細胞の中に入り込んで自己のコピーをつくらせて増殖するため、細菌の死滅に有効な抗生物質はウイルスには効果がない。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+            
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問3</p>
+                <div class="flex-grow">
+                    <p class="text-base">麻しん（はしか）や結核は、感染者のせきやくしゃみによって飛び散った飛まつ（しぶき）を直接吸い込むことによって感染する、飛まつ感染の代表例である。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問4</p>
+                <div class="flex-grow">
+                    <p class="text-base">病原体に汚染された食品や水を摂取することによって、消化器官を中心に感染が広がる経路を、経口感染という。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+            
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問5</p>
+                <div class="flex-grow">
+                    <p class="text-base">インフルエンザウイルスは、温度が32℃以上、湿度が80%以上といった高温・多湿の環境において、最も生存率が高くなる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問6</p>
+                <div class="flex-grow">
+                    <p class="text-base">学校保健安全法に基づき、中学生がインフルエンザに罹患した場合、「発症した後三日を経過し」かつ「解熱した後三日を経過するまで」は出席停止となる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+            
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問7</p>
+                <div class="flex-grow">
+                    <p class="text-base">感染症予防の三つの柱のうち、感染経路を断つための対策として、調理器具を熱湯で殺菌消毒することが有効である。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問8</p>
+                <div class="flex-grow">
+                    <p class="text-base">予防接種（ワクチン）を受けると、体内に免疫という抵抗力がつき、万が一感染しても発病を防いだり、症状の重症化を防いだりすることができる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+
+            <p class="text-base font-bold section-title mb-2 mt-4">性感染症とエイズ</p>
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問9</p>
+                <div class="flex-grow">
+                    <p class="text-base">性器クラミジア感染症は潜伏期間が2〜7日と比較的短く、男性では尿道からうみが出る、排尿時に痛みがあるなどの症状が特徴である。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問10</p>
+                <div class="flex-grow">
+                    <p class="text-base">性感染症は、感染しても自覚症状がほとんどない場合があるため、本人が気づかないうちに他者へ感染を広げてしまう危険性があり、社会問題となっている。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問11</p>
+                <div class="flex-grow">
+                    <p class="text-base">性感染症は自然治癒することがほとんどなく、治療せずに放置すると、不妊症の原因になったり、妊娠中の場合は流産や早産のリスクを高めたりすることがある。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問12</p>
+                <div class="flex-grow">
+                    <p class="text-base">エイズの病原体はHIV（ヒト免疫不全ウイルス）であり、主な感染経路は、性的接触、母子感染、そして注射器具の共用の3つである。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問13</p>
+                <div class="flex-grow">
+                    <p class="text-base">HIVは感染してから1〜2年という短い潜伏期間を経てエイズを発症することがほとんどであり、早期に重篤な症状が現れるのが特徴である。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問14</p>
+                <div class="flex-grow">
+                    <p class="text-base">HIVは感染力が非常に強いため、感染者と同じ風呂やプールに入ったり、トイレの便座を共用したりすることでも感染するリスクがある。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+
+            <p class="text-base font-bold section-title mb-2 mt-4">医薬品と保健・医療機関</p>
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問15</p>
+                <div class="flex-grow">
+                    <p class="text-base">医薬品のカプセルや錠剤のコーティングは、胃液による分解を促進し、含有成分を素早く体内に放出させることを目的としている。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問16</p>
+                <div class="flex-grow">
+                    <p class="text-base">医薬品の用法で「食間に飲むこと」と指示されている場合、それは食事の最中に飲むことを意味する。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問17</p>
+                <div class="flex-grow">
+                    <p class="text-base">日常的な病気の診療や健康相談を担う「かかりつけ医」は、専門的な手術や入院が必要な重症患者を主に担当する医療機関である。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問18</p>
+                <div class="flex-grow">
+                    <p class="text-base">保健センターは都道府県や政令市が運営しており、狂犬病予防や飲食店の営業許可など、専門的かつ広域的な保健衛生業務を担っている。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            
+            <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">第2部：体育分野 (全32問・64点)</h3>
+            
+            <p class="text-base font-bold section-title mb-2 mt-4">陸上競技 (8問)</p>
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問19</p>
+                <div class="flex-grow">
+                    <p class="text-base">リレー競技において、バトンの受け渡しを行うために定められた30mの区域のことを「利得距離」という。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問20</p>
+                <div class="flex-grow">
+                    <p class="text-base">クラウチングスタートの一種であるエロンゲーテッドスタートは、スタートからの反応は速いが、バランスを崩しやすいため上級者向けのスタート方法である。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問21</p>
+                <div class="flex-grow">
+                    <p class="text-base">アンダーハンドパスは、腕を伸ばすことで利得距離が長くなるという長所があるが、渡し損ねた場合に再挑戦しにくいという短所がある。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問22</p>
+                <div class="flex-grow">
+                    <p class="text-base">リレー競技のバトンパスは、受け取る走者の手の中にバトンが完全に渡った瞬間に成立（完了）したと見なされる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問23</p>
+                <div class="flex-grow">
+                    <p class="text-base">リレー競技中にバトンを落としてしまった場合、どのような状況であっても、バトンを渡そうとした前走者が拾わなければならない。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問24</p>
+                <div class="flex-grow">
+                    <p class="text-base">ハードル走において、競技者の脚または足が、ハードルのバーよりも低い位置を通過した場合は失格となる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問25</p>
+                <div class="flex-grow">
+                    <p class="text-base">陸上短距離走のフィニッシュ判定で用いられる「トルソー」とは、首、腕、脚を含めた胴体全体を指し、これらの部位が最初にフィニッシュラインに到達したかで順位が決まる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問26</p>
+                <div class="flex-grow">
+                    <p class="text-base">日本で生まれた駅伝競走の「駅伝」という名称は、701年の大宝律令に定められた駅制に関連する「駅馬・伝馬」からとられたものである。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+
+            <p class="text-base font-bold section-title mb-2 mt-4">水泳 (8問)</p>
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問27</p>
+                <div class="flex-grow">
+                    <p class="text-base">水泳における「ストリームライン」とは、腕のかきに合わせて体幹を軸に上半身を回転させることで、水の抵抗を減らす一連の動作のことである。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問28</p>
+                <div class="flex-grow">
+                    <p class="text-base">水泳のルールでは、記録の公平性よりも水着の性能が優先されるため、2010年以降、サメの肌の構造などを応用した全身を覆うタイプの高速水着の使用が推奨されるようになった。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問29</p>
+                <div class="flex-grow">
+                    <p class="text-base">自由形のスタートおよび折り返し後、泳者は壁から10mの地点までに頭を水面に出さなければならない。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問30</p>
+                <div class="flex-grow">
+                    <p class="text-base">背泳ぎのゴールタッチは、安全確保のため、必ずうつ伏せの姿勢になって両手で壁に触れなければならない。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問31</p>
+                <div class="flex-grow">
+                    <p class="text-base">平泳ぎのスタートおよび折り返し後、最初のひとかきにつながる一連の動作の中で、体が完全に水没している状態での下方へのドルフィンキックが1回のみ許されている。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問32</p>
+                <div class="flex-grow">
+                    <p class="text-base">バタフライの折り返しおよびゴールのタッチは、泳法の特徴から、片手が先に壁に触れても有効と認められる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問33</p>
+                <div class="flex-grow">
+                    <p class="text-base">1人で4つの泳法を泳ぐ個人メドレーは、「バタフライ → 背泳ぎ → 平泳ぎ → 自由形」の順序で泳がなければならない。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問34</p>
+                <div class="flex-grow">
+                    <p class="text-base">4人で泳法をつなぐメドレーリレーは、「バタフライ → 背泳ぎ → 平泳ぎ → 自由形」の順序で泳がなければならない。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+
+            <p class="text-base font-bold section-title mb-2 mt-4">サッカー (8問)</p>
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問35</p>
+                <div class="flex-grow">
+                    <p class="text-base">サッカーの競技フィールドにおいて、すべてのラインの幅は15cm以下と定められており、センターサークルの半径は9.51mである。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問36</p>
+                <div class="flex-grow">
+                    <p class="text-base">サッカーの公式試合で使用されるボールは、重さが600〜1100g、空気圧が410〜450g/cm²の範囲内であることが規定されている。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問37</p>
+                <div class="flex-grow">
+                    <p class="text-base">中学生のサッカーの試合時間は、前半・後半それぞれ35分で行われ、ハーフタイムは10分以内と定められている。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問38</p>
+                <div class="flex-grow">
+                    <p class="text-base">キックオフの際、ボールを蹴った競技者が直接相手のゴールにボールを入れても、プレーの再開を目的としたものであるため得点とはならない。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問39</p>
+                <div class="flex-grow">
+                    <p class="text-base">サッカーにおいて、ボールがゴールラインやタッチラインに少しでも触れている状態は、インプレイではなくアウトオブプレイと判定される。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問40</p>
+                <div class="flex-grow">
+                    <p class="text-base">オフサイドとは、相手陣内で待ち伏せをすることを禁止するルールであり、オフサイドポジションにいるだけで反則となる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問41</p>
+                <div class="flex-grow">
+                    <p class="text-base">オフサイドにならない特例はなく、ゴールキックやコーナーキック、スローインから直接ボールを受けた場合でも、オフサイドポジションにいれば反則となる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問42</p>
+                <div class="flex-grow">
+                    <p class="text-base">間接フリーキックが与えられた場合、キッカーが蹴ったボールが他の誰にも触れずに直接ゴールに入っても、得点として認められる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+
+            <p class="text-base font-bold section-title mb-2 mt-4">ダンス (8問)</p>
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問43</p>
+                <div class="flex-grow">
+                    <p class="text-base">ダンスの歴史において、バレエから派生して20世紀に生まれたモダンダンスは、バレエよりも古い歴史を持つ。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問44</p>
+                <div class="flex-grow">
+                    <p class="text-base">ロックやポピュラー音楽の多くは、1拍目と3拍目にアクセントのある8ビートのリズムを特徴とし、ダンスの基本的なステップに影響を与えている。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問45</p>
+                <div class="flex-grow">
+                    <p class="text-base">ヒップホップダンスのリズムの取り方は、常にアップ（伸び上がる動き）でカウントをとることが基本であり、ダウン（沈む動き）は応用的な表現で用いられる。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問46</p>
+                <div class="flex-grow">
+                    <p class="text-base">1970年代のアメリカで生まれたヒップホップカルチャーは、音楽、ダンス、アート（芸術）、そして演劇の4つの要素から構成されるストリート文化である。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問47</p>
+                <div class="flex-grow">
+                    <p class="text-base">ロックダンスは、常に体を激しく動かし続けることが特徴のダンスであり、流れを止めることなく踊り続ける点に魅力がある。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問48</p>
+                <div class="flex-grow">
+                    <p class="text-base">ブレイクダンス（ブレイキン）を踊るダンサーは、男性をBボーイ、女性をBガールと呼ぶ。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問49</p>
+                <div class="flex-grow">
+                    <p class="text-base">ブレイクダンスは、2018年に開催されたユースオリンピックにおいて、「ブレイキン」という名称で正式競技として採用された。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+            <div class="question-block flex items-start space-x-3 border-b pb-3">
+                <p class="w-8 font-bold flex-shrink-0">問50</p>
+                <div class="flex-grow">
+                    <p class="text-base">クラシックバレエの基本的な動きにおいて、「プリエ」とはかかとを高く上げてバランスをとる動きであり、「ルルベ」とは両膝を深く曲げる動きである。</p>
+                </div>
+                <div class="flex-shrink-0 text-lg font-bold">
+                    [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]
+                </div>
+            </div>
+
+        </div>
+
+        
+        <div class="page-break-before"></div>
+        <div class="answer-section mt-12">
+            <h2 class="text-3xl font-bold section-title text-center text-red-700">【解答と解説】</h2>
+            <p class="text-base font-bold section-title text-red-700">第1部：保健分野（全18問）</p>
+
+            <div class="space-y-4 text-gray-800">
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問1</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 細菌は人間にない細胞壁を持つ単細胞生物です。細菌に有効なのは抗生物質であり、抗ウイルス薬ではありません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問2</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。ウイルスは細胞に寄生して増殖するため、細菌を対象とする抗生物質は効果がありません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問3</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 麻しんや結核は、空気感染の代表例です。飛まつ感染はインフルエンザなど、飛まつ（しぶき）を直接吸い込むことで感染する経路を指します。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問4</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。ノロウイルスによる感染性胃腸炎などがこの経路にあたります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問5</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: インフルエンザウイルスは、温度が低く、湿度も低いときに生存率が高くなります。高温・多湿では生存率が低くなります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問6</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 正しくは「発症した後五日を経過し」かつ「解熱した後二日を経過するまで」です。日数の組み合わせが異なります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問7</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 調理器具を熱湯で殺菌することは、病原体そのものをなくす発生源をなくす対策に分類されます。感染経路を断つ対策は、手洗いやうがいなどが該当します。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問8</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。予防接種は、抵抗力を高めるための有効な対策の一つです。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問9</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: この記述は淋菌感染症の特徴です。性器クラミジア感染症の潜伏期間は1〜3週間で、女性は特に症状が軽いか無症状なことが多いとされています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問10</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。自覚症状の乏しさが、無自覚な感染拡大の一因となっています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問11</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。性感染症の放置は、自身だけでなく将来の子どもにも影響を及ぼす可能性があります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問12</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。HIVの正式名称と3つの主要な感染経路を正しく示しています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問13</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: HIVの潜伏期間は非常に長く、10年以上発病しない場合もあります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問14</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 風呂、プール、トイレの便座など、日常生活の共用でHIVに感染することはありません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問15</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: コーティングの目的は、成分をゆっくり放出させたり、胃液での分解を防いだりすることです。説明が逆になっています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問16</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 「食間に飲む」とは、食事と食事の間（例：食後2時間程度）に飲むことを意味します。食事中ではありません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問17</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 専門的な手術や入院を担当するのは**総合病院（特定機能病院）**です。かかりつけ医は、地域の人々の日常的な診療や健康相談を行います。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問18</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: この記述は保健所の役割です。保健センターは市町村が運営し、がん検診や予防接種など、より住民に身近な保健サービスを提供します。</span></div>
+                </div>
+
+
+                <p class="text-base font-bold section-title text-red-700 mt-8">第2部：体育分野（全32問）</p>
+
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問19</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: バトンの受け渡しを行う区域は**テークオーバーゾーン**です。利得距離は、バトンパスによって得をする距離（走者間の腕の伸びによる距離）を指します。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問20</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: エロンゲーテッドスタートは、スタートからの反応は遅いですが、バランスが良く初心者にもお勧めされるスタート方法です。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問21</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: これは**オーバーハンドパス**の特徴です。アンダーハンドパスは利得距離が短いですが、渡し損ねても再挑戦しやすい長所があります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問22</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通り、公式ルールではバトンが次走者の手の中に完全に収まった時点でパスが完了となります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問23</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: バトンパスが完了した後にバトンを落とした場合は、**次走者**が拾わなければなりません。完了前に落とした場合は前走者が拾います。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問24</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。ハードルを越える際は、脚や足がバーの上を通過する必要があります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問25</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 「トルソー」は、首、腕、脚を除いた**胴体部分**を指します。腕や脚はフィニッシュの判定には含まれません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問26</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通り、駅伝の名称は日本の古代律令制度に由来します。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問27</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: この記述はローリングの説明です。**ストリームライン**は、水の抵抗が最も少なくなるよう体全体を一直線に伸ばした姿勢のことです。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問28</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 記録の公平性を保つため、2010年以降、全身を覆うタイプの高速水着の使用は**禁止**されています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問29</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 正しくは、壁から**15m**の地点までに頭を水面に出さなければなりません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問30</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 背泳ぎのゴールタッチは、**あおむけ**の姿勢で壁に触れなければなりません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問31</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。このルールは平泳ぎの泳法において重要なポイントです。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問32</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: バタフライのタッチは、必ず**両手同時に**行わなければなりません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問33</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通り、この順序は個人メドレーのルールで定められています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問34</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: この順序は個人メドレーのものです。メドレーリレーの正しい順序は、「**背泳ぎ → 平泳ぎ → バタフライ → 自由形**」です。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問35</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: ラインの幅は**12cm以下**、センターサークルの半径は**9.15m**です。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問36</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 重さは**410〜450g**、空気圧は**600〜1100g/cm²**です。数値が逆になっています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問37</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 中学生の試合時間は「25分か30分か35分」のいずれかであり、35分と断定している点が誤りです。また、ハーフタイムは**「15分以内」**と定められています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問38</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: キックオフから直接得点することもできます。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問39</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: ボール全体がラインを完全に越えるとアウトオブプレイになります。少しでも触れていれば**インプレイ**です。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問40</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: オフサイドポジションにいるだけでは反則にはなりません。その位置でパスを受けるなど、**プレーに関わった場合**に反則と判定されます。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問41</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: ゴールキック、コーナーキック、スローインからボールを直接受ける場合は、オフサイドの**特例として反則にはなりません**。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問42</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 間接フリーキックは、ボールが他のプレイヤーに触れた後でなければ得点とはなりません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問43</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: モダンダンスは20世紀に生まれたもので、18世紀には発展していたバレエよりも**新しい歴史を持つ**ダンスです。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問44</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: ロックやポピュラー音楽の多くは、**2拍目と4拍目**にアクセントがあります。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問45</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: ヒップホップのリズムは、**ダウン（沈む動き）**でカウントをとるのが基本です。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問46</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: ヒップホップカルチャーの4つの要素は、音楽、ダンス、アート（芸術）、そして**DJ（ディスクジョッキー）**です。「演劇」は含まれません。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問47</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: ロックダンスは、体に鍵（ロック）をかけたように**動きを止める（フリーズする）**ことが大きな特徴です。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問48</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通りです。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問49</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: 〇</span> <span class="text-sm">解説: 記述の通り、近代オリンピック競技としての一歩を踏み出しています。</span></div>
+                </div>
+                <div class="grid grid-cols-[auto_1fr] gap-x-2 border-b pb-2">
+                    <div class="font-bold">問50</div>
+                    <div><span class="font-bold mr-2 text-red-600">答: ×</span> <span class="text-sm">解説: 「プリエ」は**膝を曲げる動き**、「ルルベ」は**かかとを上げてバランスをとる動き**です。説明が逆になっています。</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
