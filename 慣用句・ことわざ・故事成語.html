@@ -3,577 +3,576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>慣用句・ことわざ・故事成語 一問一答</title>
-    <!-- Tailwind CSSの読み込み -->
+    <title>慣用句・ことわざ・故事成語 一問一答練習問題</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- 日本語フォント（Noto Sans JP）の設定 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* A4サイズに近づけた印刷設定 */
         @page {
             size: A4;
             margin: 15mm;
         }
         body {
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: 'Noto Serif JP', serif;
             color: #1a1a1a;
             line-height: 1.6;
             background-color: #f3f4f6;
         }
+        /* 以前の.pageを廃止し、全体を包む.paperクラスに変更 */
         .paper {
             background-color: white;
             max-width: 210mm; /* A4幅 */
             min-height: 297mm;
             margin: 20px auto;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+            padding: 20mm;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-sizing: border-box;
         }
-        /* 各問題セクションのスタイル */
-        .question-section {
-            margin-bottom: 2.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid #e5e7eb;
-        }
-        /* 問題文と語群を分けるためのフレックスコンテナ */
-        .question-container {
-            display: flex;
-            gap: 2rem;
-        }
-        .problems {
-            flex: 2; /* 問題文側を広く */
-            min-width: 0;
-        }
-        .word-group {
-            flex: 1; /* 語群側 */
-            min-width: 200px;
-            padding: 1rem;
-            background-color: #f7f9fb;
-            border-left: 4px solid #3b82f6;
-            border-radius: 8px;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-        }
-        .word-group ul {
-            list-style-type: none;
-            padding-left: 0;
-            margin-top: 0.5rem;
-        }
-        .word-group li {
-            font-size: 0.95rem;
-            line-height: 1.8;
-            border-bottom: 1px dotted #cbd5e1;
-            padding: 2px 0;
-        }
-        .word-group li:last-child {
-            border-bottom: none;
-        }
-        h2 {
-            border-bottom: 3px solid #10b981;
-            padding-bottom: 5px;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-        h3 {
-            background-color: #e0f2f1;
-            padding: 8px 12px;
-            border-radius: 6px;
+        .question-title {
+            font-family: 'Noto Sans JP', sans-serif;
             font-weight: 700;
-            margin-bottom: 1.25rem;
-            color: #065f46;
         }
-        /* 解答セクションを問題と区別 */
-        .answer-section {
-            background-color: #eef2ff;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #c7d2fe;
-            margin-top: 3rem;
+        .section-title {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-family: 'Noto Sans JP', sans-serif;
         }
+        /* 問題の行頭インデント調整用 */
+        .choice-list {
+            padding-left: 1.5em;
+            text-indent: -1.5em;
+        }
+        
+        /* 問題の途中でページが切れないようにする設定 */
+        .question-block {
+            page-break-inside: avoid; /* 古いブラウザ向け */
+            break-inside: avoid;      /* 標準 */
+            margin-bottom: 1.5rem;    /* 問題間の余白 */
+        }
+        /* 解答リストのレイアウト調整 */
         .answer-list {
-            list-style-type: decimal;
-            padding-left: 20px;
+            padding: 0 10px;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                -webkit-print-color-adjust: exact;
+            }
+            .paper {
+                width: 100%;
+                max-width: none;
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                min-height: auto;
+            }
+            .no-print {
+                display: none;
+            }
+            /* 解答編の直前だけ改ページを入れる */
+            .page-break-before {
+                page-break-before: always;
+                break-before: always;
+            }
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
+
+    <div class="no-print bg-gray-800 text-white p-4 text-center sticky top-0 z-50 shadow-md">
+        <p class="mb-2">プリント形式に整形しました。印刷プレビューで確認してください。</p>
+        <button onclick="window.print()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition duration-300 flex items-center justify-center mx-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            印刷する
+        </button>
+    </div>
 
     <div class="paper">
-        <header class="text-center mb-10">
-            <h1 class="text-3xl font-bold text-blue-700 border-b-4 border-blue-500 pb-2 inline-block">慣用句・ことわざ・故事成語 一問一答練習問題</h1>
-        </header>
-
-        <!-- ============================================== -->
-        <!-- 第1部：慣用句 -->
-        <!-- ============================================== -->
-        <h2 class="text-2xl font-bold text-teal-600 mb-6">第1部：慣用句</h2>
-
-        <!-- 2. 「目」に関する慣用句 -->
-        <section class="question-section">
-            <h3 class="text-xl">2. 「目」に関する慣用句</h3>
-            <p class="font-medium mb-4 text-sm">【問題】 次の１～１５の意味に合う慣用句を、下の【語群】から選びなさい。</p>
-
-            <div class="question-container">
-                <div class="problems space-y-2">
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">1.</span> 厳しく見張ること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">2.</span> 物を見る目が養われること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">3.</span> 気づかないふりをすること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">4.</span> ひどいので黙って見過ごせない様子。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">5.</span> 寛容な態度で見守るたとえ。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">6.</span> とてもかわいく思う気持ち。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">7.</span> 見たことが信じられない。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">8.</span> 素晴らしさに、我を忘れて見入ること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">9.</span> とても利口なこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">10.</span> 相手にしない。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">11.</span> とても好きなこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">12.</span> すぐ近くであることのたとえ。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">13.</span> 怒って怖い目つきをする。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">14.</span> 目を大きく開けて注意深く見ること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">15.</span> 物の値打ちを見極める力があること。</div>
-                </div>
-
-                <div class="word-group">
-                    <p class="font-bold text-base text-blue-700 mb-2">【語群】</p>
-                    <ul>
-                        <li>目を皿のようにする</li>
-                        <li>目が肥える</li>
-                        <li>目を光らす</li>
-                        <li>目がない</li>
-                        <li>目をつぶる</li>
-                        <li>目もくれない</li>
-                        <li>目に余る</li>
-                        <li>目と鼻の先</li>
-                        <li>長い目で見る</li>
-                        <li>目から鼻に抜ける</li>
-                        <li>目を三角にする</li>
-                        <li>目を疑う</li>
-                        <li>目が高い(目が利く)</li>
-                        <li>目に入れてもいたくない</li>
-                        <li>目を見張る(目を奪われる)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. 「手」に関する慣用句 -->
-        <section class="question-section">
-            <h3 class="text-xl">3. 「手」に関する慣用句</h3>
-            <p class="font-medium mb-4 text-sm">【問題】 次の１～１４の意味に合う慣用句を、下の【語群】から選びなさい。</p>
-
-            <div class="question-container">
-                <div class="problems space-y-2">
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">1.</span> 着物・服を着ること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">2.</span> 暇になる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">3.</span> 関係を断って分かれること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">4.</span> 考え込んで腕組みする・何もしないでそばで見ている。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">5.</span> 面倒が見切れず持て余すこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">6.</span> 身構えて待っている様子。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">7.</span> 自分の力では解決できない。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">8.</span> 妥協する。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">9.</span> 計略に引っかかること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">10.</span> 降参する。（手を挙げる）</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">11.</span> 暴力をふるう。（手を挙げる）</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">12.</span> 力になる・助ける。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">13.</span> ハラハラしている様子。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">14.</span> どうしようもなく困ること。</div>
-                </div>
-
-                <div class="word-group">
-                    <p class="font-bold text-base text-blue-700 mb-2">【語群】</p>
-                    <ul>
-                        <li>手を挙げる（降参）</li>
-                        <li>手を焼く</li>
-                        <li>手が空く</li>
-                        <li>手を貸す</li>
-                        <li>手を通す</li>
-                        <li>手を打つ</li>
-                        <li>手に負えない</li>
-                        <li>手に汗を握る</li>
-                        <li>手をこまねく</li>
-                        <li>手ぐすねを引く</li>
-                        <li>手を挙げる（暴力）</li>
-                        <li>手を切る</li>
-                        <li>手が付けられない</li>
-                        <li>手に乗る</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. 「足」に関する慣用句 -->
-        <section class="question-section">
-            <h3 class="text-xl">4. 「足」に関する慣用句</h3>
-            <p class="font-medium mb-4 text-sm">【問題】 次の１～７の意味に合う慣用句を、下の【語群】から選びなさい。</p>
-
-            <div class="question-container">
-                <div class="problems space-y-2">
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">1.</span> よくない仕事をやめる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">2.</span> 発見されるきっかけになること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">3.</span> 歩き疲れた様子。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">4.</span> 予定より遠くへ行く。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">5.</span> 人の仕事の邪魔をする。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">6.</span> 予算を超えて赤字になる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">7.</span> 相手の失言をとらえてなじること。</div>
-                </div>
-
-                <div class="word-group">
-                    <p class="font-bold text-base text-blue-700 mb-2">【語群】</p>
-                    <ul>
-                        <li>足が出る</li>
-                        <li>足を引っ張る</li>
-                        <li>足を洗う</li>
-                        <li>揚げ足を取る</li>
-                        <li>足がつく</li>
-                        <li>足を延ばす</li>
-                        <li>足が棒になる</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. 「耳」に関する慣用句 -->
-        <section class="question-section">
-            <h3 class="text-xl">5. 「耳」に関する慣用句</h3>
-            <p class="font-medium mb-4 text-sm">【問題】 次の１～８の意味に合う慣用句を、下の【語群】から選びなさい。</p>
-
-            <div class="question-container">
-                <div class="problems space-y-2">
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">1.</span> 内緒でこっそり教えること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">2.</span> 偶然ちらっと聞くこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">3.</span> 情報をつかむのが早いこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">4.</span> 話を聞き、相談に乗ること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">5.</span> 注意を集中して聞くこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">6.</span> お金を全額そろえて用意すること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">7.</span> 自分の欠点をはっきり言われて、つらいこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">8.</span> 同じことばかり言われて閉口すること。</div>
-                </div>
-
-                <div class="word-group">
-                    <p class="font-bold text-base text-blue-700 mb-2">【語群】</p>
-                    <ul>
-                        <li>耳が痛い</li>
-                        <li>耳を貸す</li>
-                        <li>耳を傾ける</li>
-                        <li>耳打ち</li>
-                        <li>耳が早い</li>
-                        <li>耳にたこができる</li>
-                        <li>小耳にはさむ</li>
-                        <li>耳をそろえる</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. 「口」に関する慣用句 -->
-        <section class="question-section">
-            <h3 class="text-xl">6. 「口」に関する慣用句</h3>
-            <p class="font-medium mb-4 text-sm">【問題】 次の１～１０の意味に合う慣用句を、下の【語群】から選びなさい。</p>
-
-            <div class="question-container">
-                <div class="problems space-y-2">
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">1.</span> あまりものを言わないこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">2.</span> 自分で話したすぐ後に。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">3.</span> 秘密を守って離さないこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">4.</span> 秘密をうっかり話すこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">5.</span> 一番初めに発言すること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">6.</span> 仕事を頼まれたり、人に招かれたりすること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">7.</span> 白状すること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">8.</span> 相手の話に騙されること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">9.</span> おしゃべりなこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">10.</span> 同じことを繰り返し言うこと。</div>
-                </div>
-
-                <div class="word-group">
-                    <p class="font-bold text-base text-blue-700 mb-2">【語群】</p>
-                    <ul>
-                        <li>口を切る</li>
-                        <li>口が堅い</li>
-                        <li>口がかかる</li>
-                        <li>口が重い</li>
-                        <li>口が滑る</li>
-                        <li>口から先にうまれる</li>
-                        <li>口を割る</li>
-                        <li>口が酸っぱくなる</li>
-                        <li>舌の根も乾かぬうちに</li>
-                        <li>口車に乗る</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. 「鼻」に関する慣用句 -->
-        <section class="question-section">
-            <h3 class="text-xl">7. 「鼻」に関する慣用句</h3>
-            <p class="font-medium mb-4 text-sm">【問題】 次の１～１２の意味に合う慣用句を、下の【語群】から選びなさい。</p>
-
-            <div class="question-container">
-                <div class="problems space-y-2">
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">1.</span> あざ笑うこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">2.</span> 飽きていやになる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">3.</span> 恥をかかせる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">4.</span> 冷淡な態度をとる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">5.</span> 得意になること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">6.</span> 出し抜いてびっくりさせる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">7.</span> 得意げに自慢すること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">8.</span> 我慢できないこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">9.</span> すぐ近くに寄り添うこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">10.</span> そっけない態度をとる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">11.</span> まったく相手にしないこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">12.</span> 人に嫌がられ、のけ者にされること。</div>
-                </div>
-
-                <div class="word-group">
-                    <p class="font-bold text-base text-blue-700 mb-2">【語群】</p>
-                    <ul>
-                        <li>鼻を折る</li>
-                        <li>鼻であしらう</li>
-                        <li>鼻で笑う</li>
-                        <li>鼻につく</li>
-                        <li>鼻が高い</li>
-                        <li>鼻にかける</li>
-                        <li>木で鼻を括る</li>
-                        <li>鼻汁もひっかけない</li>
-                        <li>鼻をあかす</li>
-                        <li>鼻つかみ</li>
-                        <li>鼻持ちならない</li>
-                        <li>鼻をつき合わせる</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- 8. その他の身体部分・心に関する慣用句 -->
-        <section class="question-section">
-            <h3 class="text-xl">8. その他の身体部分・心に関する慣用句</h3>
-            <p class="font-medium mb-4 text-sm">【問題】 次の１～１７の意味に合う慣用句を、下の【語群】から選びなさい。</p>
-
-            <div class="question-container">
-                <div class="problems space-y-2">
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">1.</span> 人の行いなどに敬服する。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">2.</span> 自信に満ちた態度を取る。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">3.</span> 忘れないようにしっかりと覚えておく。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">4.</span> 人の体面をつぶす。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">5.</span> ひどく驚いて感心する。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">6.</span> 非常に驚くこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">7.</span> 自分の技能を使いたくてたまらないこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">8.</span> 知り合いが多いこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">9.</span> 本気になって力添えする。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">10.</span> 味方して応援する。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">11.</span> 機嫌を悪くして、人の言うことを聞かなくなること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">12.</span> 体面を保つことができること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">13.</span> 納得がいかないこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">14.</span> 本心をありのまま語り合う。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">15.</span> 偉そうに人に用事をさせる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">16.</span> 他人にへりくだった態度をとる。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">17.</span> とても対抗できないこと。</div>
-                </div>
-
-                <div class="word-group">
-                    <p class="font-bold text-base text-blue-700 mb-2">【語群】</p>
-                    <ul>
-                        <li>胸を張る</li>
-                        <li>顔が広い</li>
-                        <li>腹を割る</li>
-                        <li>頭が下がる</li>
-                        <li>肝をつぶす</li>
-                        <li>心に刻む</li>
-                        <li>腕が鳴る</li>
-                        <li>へそを曲げる</li>
-                        <li>顔に泥を塗る</li>
-                        <li>歯が立たない</li>
-                        <li>舌を巻く</li>
-                        <li>肩を入れる</li>
-                        <li>顔が立つ</li>
-                        <li>腰が低い</li>
-                        <li>肩を持つ</li>
-                        <li>腑に落ちない</li>
-                        <li>顎で使う</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================== -->
-        <!-- 第2部：ことわざ・故事成語 -->
-        <!-- ============================================== -->
-        <h2 class="text-2xl font-bold text-teal-600 mb-6">第2部：ことわざ・故事成語</h2>
-
-        <!-- 2. ことわざ・故事成語の問題 -->
-        <section class="question-section">
-            <h3 class="text-xl">2. ことわざ・故事成語の問題</h3>
-            <p class="font-medium mb-4 text-sm">【問題】 次の１～８の意味に合うことわざ・故事成語を、下の【語群】から選びなさい。</p>
-
-            <div class="question-container">
-                <div class="problems space-y-2">
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">1.</span> その道に熟練した人でも、時には失敗するというたとえ。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">2.</span> 失敗しないように、しっかりと準備をしておくことのたとえ。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">3.</span> 後戻りできない覚悟で物事に取り組むこと。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">4.</span> 昔の事柄に学んで新しい知識を得ること。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">5.</span> 身近なことの方がかえって気づきにくいことのたとえ。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">6.</span> 意外なところから、思いもよらないものが出ることのたとえ。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">7.</span> 危険を冒さなければ、大きな成果は得られないことのたとえ。</div>
-                    <div class="flex items-start"><span class="w-6 font-bold text-gray-600">8.</span> 目上の人が、礼を尽くして優れた人物を迎えることのたとえ。</div>
-                </div>
-
-                <div class="word-group">
-                    <p class="font-bold text-base text-blue-700 mb-2">【語群】</p>
-                    <ul>
-                        <li>温故知新</li>
-                        <li>虎穴に入らずんば虎子を得ず</li>
-                        <li>背水の陣</li>
-                        <li>ひょうたんから駒が出る</li>
-                        <li>転ばぬ先のつえ</li>
-                        <li>三顧の礼</li>
-                        <li>猿も木から落ちる</li>
-                        <li>灯台下暗し</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- ============================================== -->
-        <!-- 解答セクション -->
-        <!-- ============================================== -->
-        <section class="answer-section">
-            <h2 class="text-2xl font-bold text-indigo-700 border-b-2 border-indigo-500 pb-2 mb-4">解答</h2>
-
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- 慣用句の解答 -->
-                <div>
-                    <h3 class="text-lg font-bold text-indigo-700 bg-indigo-200 p-2 rounded-md">第1部：慣用句</h3>
-
-                    <h4 class="font-semibold mt-3 mb-1 text-gray-700">2. 「目」に関する慣用句</h4>
-                    <ol class="answer-list space-y-1">
-                        <li>目を光らす</li>
-                        <li>目が肥える</li>
-                        <li>目をつぶる</li>
-                        <li>目に余る</li>
-                        <li>長い目で見る</li>
-                        <li>目に入れてもいたくない</li>
-                        <li>目を疑う</li>
-                        <li>目を見張る(目を奪われる)</li>
-                        <li>目から鼻に抜ける</li>
-                        <li>目もくれない</li>
-                        <li>目がない</li>
-                        <li>目と鼻の先</li>
-                        <li>目を三角にする</li>
-                        <li>目を皿のようにする</li>
-                        <li>目が高い(目が利く)</li>
-                    </ol>
-
-                    <h4 class="font-semibold mt-3 mb-1 text-gray-700">3. 「手」に関する慣用句</h4>
-                    <ol class="answer-list space-y-1">
-                        <li>手を通す</li>
-                        <li>手が空く</li>
-                        <li>手を切る</li>
-                        <li>手をこまねく</li>
-                        <li>手を焼く</li>
-                        <li>手ぐすねを引く</li>
-                        <li>手に負えない</li>
-                        <li>手を打つ</li>
-                        <li>手に乗る</li>
-                        <li>手を挙げる（降参）</li>
-                        <li>手を挙げる（暴力）</li>
-                        <li>手を貸す</li>
-                        <li>手に汗を握る</li>
-                        <li>手が付けられない</li>
-                    </ol>
-
-                    <h4 class="font-semibold mt-3 mb-1 text-gray-700">4. 「足」に関する慣用句</h4>
-                    <ol class="answer-list space-y-1">
-                        <li>足を洗う</li>
-                        <li>足がつく</li>
-                        <li>足が棒になる</li>
-                        <li>足を延ばす</li>
-                        <li>足を引っ張る</li>
-                        <li>足が出る</li>
-                        <li>揚げ足を取る</li>
-                    </ol>
-                </div>
-
-                <!-- 慣用句の解答（続き）とことわざの解答 -->
-                <div>
-                    <h4 class="font-semibold mt-3 mb-1 text-gray-700">5. 「耳」に関する慣用句</h4>
-                    <ol class="answer-list space-y-1">
-                        <li>耳打ち</li>
-                        <li>小耳にはさむ</li>
-                        <li>耳が早い</li>
-                        <li>耳を貸す</li>
-                        <li>耳を傾ける</li>
-                        <li>耳をそろえる</li>
-                        <li>耳が痛い</li>
-                        <li>耳にたこができる</li>
-                    </ol>
-
-                    <h4 class="font-semibold mt-3 mb-1 text-gray-700">6. 「口」に関する慣用句</h4>
-                    <ol class="answer-list space-y-1">
-                        <li>口が重い</li>
-                        <li>舌の根も乾かぬうちに</li>
-                        <li>口が堅い</li>
-                        <li>口が滑る</li>
-                        <li>口を切る</li>
-                        <li>口がかかる</li>
-                        <li>口を割る</li>
-                        <li>口車に乗る</li>
-                        <li>口から先にうまれる</li>
-                        <li>口が酸っぱくなる</li>
-                    </ol>
-
-                    <h4 class="font-semibold mt-3 mb-1 text-gray-700">7. 「鼻」に関する慣用句</h4>
-                    <ol class="answer-list space-y-1">
-                        <li>鼻で笑う</li>
-                        <li>鼻につく</li>
-                        <li>鼻を折る</li>
-                        <li>木で鼻を括る</li>
-                        <li>鼻が高い</li>
-                        <li>鼻をあかす</li>
-                        <li>鼻にかける</li>
-                        <li>鼻持ちならない</li>
-                        <li>鼻をつき合わせる</li>
-                        <li>鼻であしらう</li>
-                        <li>鼻汁もひっかけない</li>
-                        <li>鼻つかみ</li>
-                    </ol>
-
-                    <h4 class="font-semibold mt-3 mb-1 text-gray-700">8. その他の身体部分・心に関する慣用句</h4>
-                    <ol class="answer-list space-y-1">
-                        <li>頭が下がる</li>
-                        <li>胸を張る</li>
-                        <li>心に刻む</li>
-                        <li>顔に泥を塗る</li>
-                        <li>舌を巻く</li>
-                        <li>肝をつぶす</li>
-                        <li>腕が鳴る</li>
-                        <li>顔が広い</li>
-                        <li>肩を入れる</li>
-                        <li>肩を持つ</li>
-                        <li>へそを曲げる</li>
-                        <li>顔が立つ</li>
-                        <li>腑に落ちない</li>
-                        <li>腹を割る</li>
-                        <li>顎で使う</li>
-                        <li>腰が低い</li>
-                        <li>歯が立たない</li>
-                    </ol>
+        <h1 class="text-3xl text-center font-bold mb-8 font-sans border-b-4 border-double border-gray-800 pb-2">慣用句・ことわざ・故事成語 一問一答練習問題</h1>
+        
+        <div class="mb-8">
+            <h2 class="text-xl font-bold section-title">第1部：慣用句</h2>
+            
+            <div class="question-block">
+                <h3 class="text-lg font-bold mt-2 mb-4 bg-gray-100 p-2 rounded font-sans">2. 「目」に関する慣用句</h3>
+                <p class="font-bold mb-1 question-title">【問題】 次の１～１５の意味に合う慣用句を、下の【語群】から選びなさい。</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
                     
-                    <h3 class="text-lg font-bold text-indigo-700 bg-indigo-200 p-2 rounded-md mt-6">第2部：ことわざ・故事成語</h3>
+                    <div class="space-y-2">
+                        <p class="choice-list">1. 厳しく見張ること。</p>
+                        <p class="choice-list">2. 物を見る目が養われること。</p>
+                        <p class="choice-list">3. 気づかないふりをすること。</p>
+                        <p class="choice-list">4. ひどいので黙って見過ごせない様子。</p>
+                        <p class="choice-list">5. 寛容な態度で見守るたとえ。</p>
+                        <p class="choice-list">6. とてもかわいく思う気持ち。</p>
+                        <p class="choice-list">7. 見たことが信じられない。</p>
+                        <p class="choice-list">8. 素晴らしさに、我を忘れて見入ること。</p>
+                        <p class="choice-list">9. とても利口なこと。</p>
+                        <p class="choice-list">10. 相手にしない。</p>
+                        <p class="choice-list">11. とても好きなこと。</p>
+                        <p class="choice-list">12. すぐ近くであることのたとえ。</p>
+                        <p class="choice-list">13. 怒って怖い目つきをする。</p>
+                        <p class="choice-list">14. 目を大きく開けて注意深く見ること。</p>
+                        <p class="choice-list">15. 物の値打ちを見極める力があること。</p>
+                    </div>
                     
-                    <h4 class="font-semibold mt-3 mb-1 text-gray-700">2. ことわざ・故事成語の問題</h4>
-                    <ol class="answer-list space-y-1">
-                        <li>猿も木から落ちる</li>
-                        <li>転ばぬ先のつえ</li>
-                        <li>背水の陣</li>
-                        <li>温故知新</li>
-                        <li>灯台下暗し</li>
-                        <li>ひょうたんから駒が出る</li>
-                        <li>虎穴に入らずんば虎子を得ず</li>
-                        <li>三顧の礼</li>
-                    </ol>
+                    <div class="bg-gray-50 p-3 border border-gray-200 rounded-lg shadow-inner h-fit">
+                        <p class="font-bold mb-2 text-base border-b border-gray-300 pb-1 font-sans">【語群】</p>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+                            <p>目を皿のようにする</p>
+                            <p>目が肥える</p>
+                            <p>目を光らす</p>
+                            <p>目がない</p>
+                            <p>目をつぶる</p>
+                            <p>目もくれない</p>
+                            <p>目に余る</p>
+                            <p>目と鼻の先</p>
+                            <p>長い目で見る</p>
+                            <p>目から鼻に抜ける</p>
+                            <p>目を三角にする</p>
+                            <p>目を疑う</p>
+                            <p>目が高い(目が利く)</p>
+                            <p>目に入れてもいたくない</p>
+                            <p>目を見張る(目を奪われる)</p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
-        </section>
 
+            <div class="question-block">
+                <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">3. 「手」に関する慣用句</h3>
+                <p class="font-bold mb-1 question-title">【問題】 次の１～１４の意味に合う慣用句を、下の【語群】から選びなさい。</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+                    
+                    <div class="space-y-2">
+                        <p class="choice-list">1. 着物・服を着ること。</p>
+                        <p class="choice-list">2. 暇になる。</p>
+                        <p class="choice-list">3. 関係を断って分かれること。</p>
+                        <p class="choice-list">4. 考え込んで腕組みする・何もしないでそばで見ている。</p>
+                        <p class="choice-list">5. 面倒が見切れず持て余すこと。</p>
+                        <p class="choice-list">6. 身構えて待っている様子。</p>
+                        <p class="choice-list">7. 自分の力では解決できない。</p>
+                        <p class="choice-list">8. 妥協する。</p>
+                        <p class="choice-list">9. 計略に引っかかること。</p>
+                        <p class="choice-list">10. 降参する。（手を挙げる）</p>
+                        <p class="choice-list">11. 暴力をふるう。（手を挙げる）</p>
+                        <p class="choice-list">12. 力になる・助ける。</p>
+                        <p class="choice-list">13. ハラハラしている様子。</p>
+                        <p class="choice-list">14. どうしようもなく困ること。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 border border-gray-200 rounded-lg shadow-inner h-fit">
+                        <p class="font-bold mb-2 text-base border-b border-gray-300 pb-1 font-sans">【語群】</p>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+                            <p>手を挙げる（降参）</p>
+                            <p>手を焼く</p>
+                            <p>手が空く</p>
+                            <p>手を貸す</p>
+                            <p>手を通す</p>
+                            <p>手を打つ</p>
+                            <p>手に負えない</p>
+                            <p>手に汗を握る</p>
+                            <p>手をこまねく</p>
+                            <p>手ぐすねを引く</p>
+                            <p>手を挙げる（暴力）</p>
+                            <p>手を切る</p>
+                            <p>手が付けられない</p>
+                            <p>手に乗る</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">4. 「足」に関する慣用句</h3>
+                <p class="font-bold mb-1 question-title">【問題】 次の１～７の意味に合う慣用句を、下の【語群】から選びなさい。</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+                    
+                    <div class="space-y-2">
+                        <p class="choice-list">1. よくない仕事をやめる。</p>
+                        <p class="choice-list">2. 発見されるきっかけになること。</p>
+                        <p class="choice-list">3. 歩き疲れた様子。</p>
+                        <p class="choice-list">4. 予定より遠くへ行く。</p>
+                        <p class="choice-list">5. 人の仕事の邪魔をする。</p>
+                        <p class="choice-list">6. 予算を超えて赤字になる。</p>
+                        <p class="choice-list">7. 相手の失言をとらえてなじること。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 border border-gray-200 rounded-lg shadow-inner h-fit">
+                        <p class="font-bold mb-2 text-base border-b border-gray-300 pb-1 font-sans">【語群】</p>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+                            <p>足が出る</p>
+                            <p>足を引っ張る</p>
+                            <p>足を洗う</p>
+                            <p>揚げ足を取る</p>
+                            <p>足がつく</p>
+                            <p>足を延ばす</p>
+                            <p>足が棒になる</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">5. 「耳」に関する慣用句</h3>
+                <p class="font-bold mb-1 question-title">【問題】 次の１～８の意味に合う慣用句を、下の【語群】から選びなさい。</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+                    
+                    <div class="space-y-2">
+                        <p class="choice-list">1. 内緒でこっそり教えること。</p>
+                        <p class="choice-list">2. 偶然ちらっと聞くこと。</p>
+                        <p class="choice-list">3. 情報をつかむのが早いこと。</p>
+                        <p class="choice-list">4. 話を聞き、相談に乗ること。</p>
+                        <p class="choice-list">5. 注意を集中して聞くこと。</p>
+                        <p class="choice-list">6. お金を全額そろえて用意すること。</p>
+                        <p class="choice-list">7. 自分の欠点をはっきり言われて、つらいこと。</p>
+                        <p class="choice-list">8. 同じことばかり言われて閉口すること。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 border border-gray-200 rounded-lg shadow-inner h-fit">
+                        <p class="font-bold mb-2 text-base border-b border-gray-300 pb-1 font-sans">【語群】</p>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+                            <p>耳が痛い</p>
+                            <p>耳を貸す</p>
+                            <p>耳を傾ける</p>
+                            <p>耳打ち</p>
+                            <p>耳が早い</p>
+                            <p>耳にたこができる</p>
+                            <p>小耳にはさむ</p>
+                            <p>耳をそろえる</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">6. 「口」や「舌」に関する慣用句</h3>
+                <p class="font-bold mb-1 question-title">【問題】 次の１～１０の意味に合う慣用句を、下の【語群】から選びなさい。</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+                    
+                    <div class="space-y-2">
+                        <p class="choice-list">1. あまりものを言わないこと。</p>
+                        <p class="choice-list">2. 自分で話したすぐ後に。</p>
+                        <p class="choice-list">3. 秘密を守って離さないこと。</p>
+                        <p class="choice-list">4. 秘密をうっかり話すこと。</p>
+                        <p class="choice-list">5. 一番初めに発言すること。</p>
+                        <p class="choice-list">6. 仕事を頼まれたり、人に招かれたりすること。</p>
+                        <p class="choice-list">7. 白状すること。</p>
+                        <p class="choice-list">8. 相手の話に騙されること。</p>
+                        <p class="choice-list">9. おしゃべりなこと。</p>
+                        <p class="choice-list">10. 同じことを繰り返し言うこと。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 border border-gray-200 rounded-lg shadow-inner h-fit">
+                        <p class="font-bold mb-2 text-base border-b border-gray-300 pb-1 font-sans">【語群】</p>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+                            <p>口を切る</p>
+                            <p>口が堅い</p>
+                            <p>口がかかる</p>
+                            <p>口が重い</p>
+                            <p>口が滑る</p>
+                            <p>口から先にうまれる</p>
+                            <p>口を割る</p>
+                            <p>口が酸っぱくなる</p>
+                            <p>舌の根も乾かぬうちに</p>
+                            <p>口車に乗る</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">7. 「鼻」に関する慣用句</h3>
+                <p class="font-bold mb-1 question-title">【問題】 次の１～１２の意味に合う慣用句を、下の【語群】から選びなさい。</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+                    
+                    <div class="space-y-2">
+                        <p class="choice-list">1. あざ笑うこと。</p>
+                        <p class="choice-list">2. 飽きていやになる。</p>
+                        <p class="choice-list">3. 恥をかかせる。</p>
+                        <p class="choice-list">4. 冷淡な態度をとる。</p>
+                        <p class="choice-list">5. 得意になること。</p>
+                        <p class="choice-list">6. 出し抜いてびっくりさせる。</p>
+                        <p class="choice-list">7. 得意げに自慢すること。</p>
+                        <p class="choice-list">8. 我慢できないこと。</p>
+                        <p class="choice-list">9. すぐ近くに寄り添うこと。</p>
+                        <p class="choice-list">10. そっけない態度をとる。</p>
+                        <p class="choice-list">11. まったく相手にしないこと。</p>
+                        <p class="choice-list">12. 人に嫌がられ、のけ者にされること。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 border border-gray-200 rounded-lg shadow-inner h-fit">
+                        <p class="font-bold mb-2 text-base border-b border-gray-300 pb-1 font-sans">【語群】</p>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+                            <p>鼻を折る</p>
+                            <p>鼻であしらう</p>
+                            <p>鼻で笑う</p>
+                            <p>鼻につく</p>
+                            <p>鼻が高い</p>
+                            <p>鼻にかける</p>
+                            <p>木で鼻を括る</p>
+                            <p>鼻汁もひっかけない</p>
+                            <p>鼻をあかす</p>
+                            <p>鼻つかみ</p>
+                            <p>鼻持ちならない</p>
+                            <p>鼻をつき合わせる</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="question-block">
+                <h3 class="text-lg font-bold mt-6 mb-4 bg-gray-100 p-2 rounded font-sans">8. その他の身体部分・心に関する慣用句</h3>
+                <p class="font-bold mb-1 question-title">【問題】 次の１～１７の意味に合う慣用句を、下の【語群】から選びなさい。</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+                    
+                    <div class="space-y-2">
+                        <p class="choice-list">1. 人の行いなどに敬服する。</p>
+                        <p class="choice-list">2. 自信に満ちた態度を取る。</p>
+                        <p class="choice-list">3. 忘れないようにしっかりと覚えておく。</p>
+                        <p class="choice-list">4. 人の体面をつぶす。</p>
+                        <p class="choice-list">5. ひどく驚いて感心する。</p>
+                        <p class="choice-list">6. 非常に驚くこと。</p>
+                        <p class="choice-list">7. 自分の技能を使いたくてたまらないこと。</p>
+                        <p class="choice-list">8. 知り合いが多いこと。</p>
+                        <p class="choice-list">9. 本気になって力添えする。</p>
+                        <p class="choice-list">10. 味方して応援する。</p>
+                        <p class="choice-list">11. 機嫌を悪くして、人の言うことを聞かなくなること。</p>
+                        <p class="choice-list">12. 体面を保つことができること。</p>
+                        <p class="choice-list">13. 納得がいかないこと。</p>
+                        <p class="choice-list">14. 本心をありのまま語り合う。</p>
+                        <p class="choice-list">15. 偉そうに人に用事をさせる。</p>
+                        <p class="choice-list">16. 他人にへりくだった態度をとる。</p>
+                        <p class="choice-list">17. とても対抗できないこと。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 border border-gray-200 rounded-lg shadow-inner h-fit">
+                        <p class="font-bold mb-2 text-base border-b border-gray-300 pb-1 font-sans">【語群】</p>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+                            <p>胸を張る</p>
+                            <p>顔が広い</p>
+                            <p>腹を割る</p>
+                            <p>頭が下がる</p>
+                            <p>肝をつぶす</p>
+                            <p>心に刻む</p>
+                            <p>腕が鳴る</p>
+                            <p>へそを曲げる</p>
+                            <p>顔に泥を塗る</p>
+                            <p>歯が立たない</p>
+                            <p>舌を巻く</p>
+                            <p>肩を入れる</p>
+                            <p>顔が立つ</p>
+                            <p>腰が低い</p>
+                            <p>肩を持つ</p>
+                            <p>腑に落ちない</p>
+                            <p>顎で使う</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="page-break-before"></div>
+
+            <h2 class="text-xl font-bold section-title mt-8">第2部：ことわざ・故事成語</h2>
+            
+            <div class="question-block">
+                <h3 class="text-lg font-bold mt-2 mb-4 bg-gray-100 p-2 rounded font-sans">2. ことわざ・故事成語の問題</h3>
+                <p class="font-bold mb-1 question-title">【問題】 次の１～８の意味に合うことわざ・故事成語を、下の【語群】から選びなさい。</p>
+                <div class="grid grid-cols-2 gap-4 text-sm mt-4">
+                    
+                    <div class="space-y-2">
+                        <p class="choice-list">1. その道に熟練した人でも、時には失敗するというたとえ。</p>
+                        <p class="choice-list">2. 失敗しないように、しっかりと準備をしておくことのたとえ。</p>
+                        <p class="choice-list">3. 後戻りできない覚悟で物事に取り組むこと。</p>
+                        <p class="choice-list">4. 昔の事柄に学んで新しい知識を得ること。</p>
+                        <p class="choice-list">5. 身近なことの方がかえって気づきにくいことのたとえ。</p>
+                        <p class="choice-list">6. 意外なところから、思いもよらないものが出ることのたとえ。</p>
+                        <p class="choice-list">7. 危険を冒さなければ、大きな成果は得られないことのたとえ。</p>
+                        <p class="choice-list">8. 目上の人が、礼を尽くして優れた人物を迎えることのたとえ。</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-3 border border-gray-200 rounded-lg shadow-inner h-fit">
+                        <p class="font-bold mb-2 text-base border-b border-gray-300 pb-1 font-sans">【語群】</p>
+                        <div class="grid grid-cols-2 gap-x-3 gap-y-1">
+                            <p>温故知新</p>
+                            <p>虎穴に入らずんば虎子を得ず</p>
+                            <p>背水の陣</p>
+                            <p>ひょうたんから駒が出る</p>
+                            <p>転ばぬ先のつえ</p>
+                            <p>三顧の礼</p>
+                            <p>猿も木から落ちる</p>
+                            <p>灯台下暗し</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+
+        <div class="page-break-before"></div>
+        <div class="answer-section mt-8">
+            <h2 class="text-3xl text-center font-bold mb-8 font-sans border-b-4 border-double border-gray-800 pb-2">解答</h2>
+
+            <h3 class="text-xl font-bold section-title">第1部：慣用句</h3>
+
+            <div class="space-y-4 answer-list">
+                <div class="border p-3 rounded-lg bg-green-50/50">
+                    <p class="font-bold mb-2 text-lg border-b pb-1">2. 「目」に関する慣用句 (全15問)</p>
+                    <div class="grid grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-2 text-sm">
+                        <p><span class="font-bold">1</span>. 目を光らす</p>
+                        <p><span class="font-bold">2</span>. 目が肥える</p>
+                        <p><span class="font-bold">3</span>. 目をつぶる</p>
+                        <p><span class="font-bold">4</span>. 目に余る</p>
+                        <p><span class="font-bold">5</span>. 長い目で見る</p>
+                        <p><span class="font-bold">6</span>. 目に入れてもいたくない</p>
+                        <p><span class="font-bold">7</span>. 目を疑う</p>
+                        <p><span class="font-bold">8</span>. 目を見張る(目を奪われる)</p>
+                        <p><span class="font-bold">9</span>. 目から鼻に抜ける</p>
+                        <p><span class="font-bold">10</span>. 目もくれない</p>
+                        <p><span class="font-bold">11</span>. 目がない</p>
+                        <p><span class="font-bold">12</span>. 目と鼻の先</p>
+                        <p><span class="font-bold">13</span>. 目を三角にする</p>
+                        <p><span class="font-bold">14</span>. 目を皿のようにする</p>
+                        <p><span class="font-bold">15</span>. 目が高い(目が利く)</p>
+                    </div>
+                </div>
+
+                <div class="border p-3 rounded-lg bg-green-50/50">
+                    <p class="font-bold mb-2 text-lg border-b pb-1">3. 「手」に関する慣用句 (全14問)</p>
+                    <div class="grid grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-2 text-sm">
+                        <p><span class="font-bold">1</span>. 手を通す</p>
+                        <p><span class="font-bold">2</span>. 手が空く</p>
+                        <p><span class="font-bold">3</span>. 手を切る</p>
+                        <p><span class="font-bold">4</span>. 手をこまねく</p>
+                        <p><span class="font-bold">5</span>. 手を焼く</p>
+                        <p><span class="font-bold">6</span>. 手ぐすねを引く</p>
+                        <p><span class="font-bold">7</span>. 手に負えない</p>
+                        <p><span class="font-bold">8</span>. 手を打つ</p>
+                        <p><span class="font-bold">9</span>. 手に乗る</p>
+                        <p><span class="font-bold">10</span>. 手を挙げる（降参）</p>
+                        <p><span class="font-bold">11</span>. 手を挙げる（暴力）</p>
+                        <p><span class="font-bold">12</span>. 手を貸す</p>
+                        <p><span class="font-bold">13</span>. 手に汗を握る</p>
+                        <p><span class="font-bold">14</span>. 手が付けられない</p>
+                    </div>
+                </div>
+                
+                <div class="border p-3 rounded-lg bg-green-50/50">
+                    <p class="font-bold mb-2 text-lg border-b pb-1">4. 「足」に関する慣用句 (全7問)</p>
+                    <div class="grid grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 text-sm">
+                        <p><span class="font-bold">1</span>. 足を洗う</p>
+                        <p><span class="font-bold">2</span>. 足がつく</p>
+                        <p><span class="font-bold">3</span>. 足が棒になる</p>
+                        <p><span class="font-bold">4</span>. 足を延ばす</p>
+                        <p><span class="font-bold">5</span>. 足を引っ張る</p>
+                        <p><span class="font-bold">6</span>. 足が出る</p>
+                        <p><span class="font-bold">7</span>. 揚げ足を取る</p>
+                    </div>
+                </div>
+
+                <div class="border p-3 rounded-lg bg-green-50/50">
+                    <p class="font-bold mb-2 text-lg border-b pb-1">5. 「耳」に関する慣用句 (全8問)</p>
+                    <div class="grid grid-cols-3 md:grid-cols-4 gap-x-4 gap-y-2 text-sm">
+                        <p><span class="font-bold">1</span>. 耳打ち</p>
+                        <p><span class="font-bold">2</span>. 小耳にはさむ</p>
+                        <p><span class="font-bold">3</span>. 耳が早い</p>
+                        <p><span class="font-bold">4</span>. 耳を貸す</p>
+                        <p><span class="font-bold">5</span>. 耳を傾ける</p>
+                        <p><span class="font-bold">6</span>. 耳をそろえる</p>
+                        <p><span class="font-bold">7</span>. 耳が痛い</p>
+                        <p><span class="font-bold">8</span>. 耳にたこができる</p>
+                    </div>
+                </div>
+
+                <div class="border p-3 rounded-lg bg-green-50/50">
+                    <p class="font-bold mb-2 text-lg border-b pb-1">6. 「口」や「舌」に関する慣用句 (全10問)</p>
+                    <div class="grid grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-2 text-sm">
+                        <p><span class="font-bold">1</span>. 口が重い</p>
+                        <p><span class="font-bold">2</span>. 舌の根も乾かぬうちに</p>
+                        <p><span class="font-bold">3</span>. 口が堅い</p>
+                        <p><span class="font-bold">4</span>. 口が滑る</p>
+                        <p><span class="font-bold">5</span>. 口を切る</p>
+                        <p><span class="font-bold">6</span>. 口がかかる</p>
+                        <p><span class="font-bold">7</span>. 口を割る</p>
+                        <p><span class="font-bold">8</span>. 口車に乗る</p>
+                        <p><span class="font-bold">9</span>. 口から先にうまれる</p>
+                        <p><span class="font-bold">10</span>. 口が酸っぱくなる</p>
+                    </div>
+                </div>
+
+                <div class="border p-3 rounded-lg bg-green-50/50">
+                    <p class="font-bold mb-2 text-lg border-b pb-1">7. 「鼻」に関する慣用句 (全12問)</p>
+                    <div class="grid grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-2 text-sm">
+                        <p><span class="font-bold">1</span>. 鼻で笑う</p>
+                        <p><span class="font-bold">2</span>. 鼻につく</p>
+                        <p><span class="font-bold">3</span>. 鼻を折る</p>
+                        <p><span class="font-bold">4</span>. 木で鼻を括る</p>
+                        <p><span class="font-bold">5</span>. 鼻が高い</p>
+                        <p><span class="font-bold">6</span>. 鼻をあかす</p>
+                        <p><span class="font-bold">7</span>. 鼻にかける</p>
+                        <p><span class="font-bold">8</span>. 鼻持ちならない</p>
+                        <p><span class="font-bold">9</span>. 鼻をつき合わせる</p>
+                        <p><span class="font-bold">10</span>. 鼻であしらう</p>
+                        <p><span class="font-bold">11</span>. 鼻汁もひっかけない</p>
+                        <p><span class="font-bold">12</span>. 鼻つかみ</p>
+                    </div>
+                </div>
+                
+                <div class="border p-3 rounded-lg bg-green-50/50">
+                    <p class="font-bold mb-2 text-lg border-b pb-1">8. その他の身体部分・心に関する慣用句 (全17問)</p>
+                    <div class="grid grid-cols-3 md:grid-cols-5 gap-x-4 gap-y-2 text-sm">
+                        <p><span class="font-bold">1</span>. 頭が下がる</p>
+                        <p><span class="font-bold">2</span>. 胸を張る</p>
+                        <p><span class="font-bold">3</span>. 心に刻む</p>
+                        <p><span class="font-bold">4</span>. 顔に泥を塗る</p>
+                        <p><span class="font-bold">5</span>. 舌を巻く</p>
+                        <p><span class="font-bold">6</span>. 肝をつぶす</p>
+                        <p><span class="font-bold">7</span>. 腕が鳴る</p>
+                        <p><span class="font-bold">8</span>. 顔が広い</p>
+                        <p><span class="font-bold">9</span>. 肩を入れる</p>
+                        <p><span class="font-bold">10</span>. 肩を持つ</p>
+                        <p><span class="font-bold">11</span>. へそを曲げる</p>
+                        <p><span class="font-bold">12</span>. 顔が立つ</p>
+                        <p><span class="font-bold">13</span>. 腑に落ちない</p>
+                        <p><span class="font-bold">14</span>. 腹を割る</p>
+                        <p><span class="font-bold">15</span>. 顎で使う</p>
+                        <p><span class="font-bold">16</span>. 腰が低い</p>
+                        <p><span class="font-bold">17</span>. 歯が立たない</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <h3 class="text-xl font-bold section-title mt-8">第2部：ことわざ・故事成語</h3>
+
+            <div class="border p-3 rounded-lg bg-green-50/50 answer-list">
+                <p class="font-bold mb-2 text-lg border-b pb-1">2. ことわざ・故事成語の問題 (全8問)</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-2 text-sm">
+                    <p><span class="font-bold">1</span>. 猿も木から落ちる</p>
+                    <p><span class="font-bold">2</span>. 転ばぬ先のつえ</p>
+                    <p><span class="font-bold">3</span>. 背水の陣</p>
+                    <p><span class="font-bold">4</span>. 温故知新</p>
+                    <p><span class="font-bold">5</span>. 灯台下暗し</p>
+                    <p><span class="font-bold">6</span>. ひょうたんから駒が出る</p>
+                    <p><span class="font-bold">7</span>. 虎穴に入らずんば虎子を得ず</p>
+                    <p><span class="font-bold">8</span>. 三顧の礼</p>
+                </div>
+            </div>
+
+        </div>
     </div>
 </body>
 </html>
